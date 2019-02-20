@@ -1,3 +1,15 @@
+#' Generate a Patient 
+#' 
+#' Generates an individual patient
+#' 
+#' @param n_patients Number of patients 
+#' @inheritParams generate_patient
+#' 
+#' @return A list with two matrices: the drug prescriptions and the 
+#'         the ADE progression. Each row is a different patient
+#'
+#' @seealso \code{\link{generate_patient}}                  
+#' @export
 #' @export
 generate_cohort <- function(n_patients = 1000, 
                             simulation_time = 100, 

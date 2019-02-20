@@ -6,6 +6,9 @@
 \usage{
 probability_constant(prob, ...)
 }
+\arguments{
+\item{prob}{The probability}
+}
 \value{
 A probability model function
 }

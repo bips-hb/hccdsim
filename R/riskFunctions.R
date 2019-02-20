@@ -3,12 +3,25 @@
 #
 # Contains all the risk models. 
 # They model how the risk of suffering the ADE
-# changes the history of drug prescriptions
+# changes with the history of drug prescriptions
 # of the patient. 
 # The risk functions return values between 0 and 
 # 1. Zero is minimal risk, 1 is full risk. 
 ##############################################
 
+#' Risk Model 'No Effect'
+#' 
+#' A risk model reflects how the probability of 
+#' suffering the ADE changes the history of 
+#' drug prescriptions of the patient. 
+#' It returns 0 when the drug prescription history
+#' has no effect, and 1 when the patient is at 
+#' maximal risk.  
+#' In this case, the drug has no effect on the ADE
+#' what so ever.
+#' 
+#' @return A risk function
+#' @family Risk models
 #' @export
 risk_no_effect <- function() { 
   function(drug_prescriptions, ...) { 
@@ -16,6 +29,20 @@ risk_no_effect <- function() {
   }
 }
 
+#' Risk Model 'Immediate'
+#' 
+#' A risk model reflects how the probability of 
+#' suffering the ADE changes the history of 
+#' drug prescriptions of the patient. 
+#' It returns 0 when the drug prescription history
+#' has no effect, and 1 when the patient is at 
+#' maximal risk.  
+#' In this case, the probability of the ADE 
+#' is maximal only when the patient is currently
+#' exposed.
+#' 
+#' @return A risk function
+#' @family Risk models
 #' @export
 risk_immediate <- function() {
   function(drug_prescriptions, ...) { 
@@ -27,7 +54,22 @@ risk_immediate <- function() {
   }
 }
 
-
+#' Risk Model 'Withdrawal'
+#' 
+#' A risk model reflects how the probability of 
+#' suffering the ADE changes the history of 
+#' drug prescriptions of the patient. 
+#' It returns 0 when the drug prescription history
+#' has no effect, and 1 when the patient is at 
+#' maximal risk.  
+#' In this case, once the patient is no longer exposed
+#' to the drug, the probability of the ADE peaks 
+#' and then dissipates exponentially. 
+#' 
+#' @param rate The rate with which the risk dissipates
+#' 
+#' @return A risk function
+#' @family Risk models
 #' @export
 risk_withdrawal <- function(rate) {
   function(drug_prescriptions, ...) { 
@@ -43,6 +85,23 @@ risk_withdrawal <- function(rate) {
   }
 }
 
+#' Risk Model 'Long Time After'
+#' 
+#' A risk model reflects how the probability of 
+#' suffering the ADE changes the history of 
+#' drug prescriptions of the patient. 
+#' It returns 0 when the drug prescription history
+#' has no effect, and 1 when the patient is at 
+#' maximal risk.  
+#' In this case, the risk of the ADE increases
+#' only after a certian moment in time before it 
+#' reaches the maximal risk.
+#' 
+#' @param rate The rate with which the risk increases
+#' @param delay How long it takes before the risk is .5
+#' 
+#' @return A risk function
+#' @family Risk models
 #' @export
 risk_long_time_after <- function(rate, delay) {
   function(drug_prescriptions, ...) { 
@@ -61,7 +120,23 @@ risk_long_time_after <- function(rate, delay) {
   }
 }
 
-#' @export 
+#' Risk Model 'Increase/Decrease'
+#' 
+#' A risk model reflects how the probability of 
+#' suffering the ADE changes the history of 
+#' drug prescriptions of the patient. 
+#' It returns 0 when the drug prescription history
+#' has no effect, and 1 when the patient is at 
+#' maximal risk.  
+#' In this case, the risk first increases linearly and 
+#' reaches its peak after \code{peak} time points. Then 
+#' it goes down at the same rate before it is zero again. 
+#' 
+#' @param peak The point at which the risk peaks
+#' 
+#' @return A risk function
+#' @family Risk models
+#' @export
 risk_increase_decrease <- function(peak) { 
   
   if (peak < 2) { 

@@ -1,3 +1,26 @@
+#' Generate a Patient 
+#' 
+#' Generates an individual patient
+#' 
+#' @param simulation_time The total number of time steps
+#' @param risk_function One of the risk models
+#' @param prescription_model One of the prescription models
+#' @param ade_model One of the ADE effect models
+#' @param min_chance The probability of the ADE when 
+#'            the drug history has no effect 
+#' @param max_chance The probability of the ADE when 
+#'            the drug history has the highest possible effect
+#' @param min_chance_drug The probability of the drug being prescribed
+#'            when the drug history and the ADE history have no effect
+#' @param max_chance_drug The probability of the ADE when 
+#'            the drug history and the ADE history have the highest 
+#'            possible effect
+#' @param patient A list with the covariates of the patient (Default: \code{NULL})
+#' 
+#' @return A list with a vector of the drug prescriptions and the 
+#'         the ADE progression
+#'
+#' @seealso \code{\link{generate_cohort}}                  
 #' @export
 generate_patient <- function(simulation_time = 100, 
                              risk_function = risk_immediate(), 
