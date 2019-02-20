@@ -5,13 +5,15 @@
 \title{Plot Risk}
 \usage{
 plot_risk(drug_prescriptions, risk_function = risk_immediate(),
-  ylim = c(0, 1))
+  title = "", ylim = c(0, 1))
 }
 \arguments{
 \item{drug_prescriptions}{Binary vector denoting the 
 drug prescription history}
 
 \item{risk_function}{One of the risk models}
+
+\item{title}{Title of the plot}
 
 \item{ylim}{The limits of the y-axis: \code{c(ymin, ymax)}}
 }
