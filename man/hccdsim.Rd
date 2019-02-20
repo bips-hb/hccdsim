@@ -4,9 +4,11 @@
 \name{hccdsim}
 \alias{hccdsim}
 \alias{hccdsim-package}
-\title{hccdsim}
+\title{hccdsim: A package for simulation longitudinal health care 
+claims data.}
 \description{
-A package for simulating longitudinal health care claim data
+hccdsim: A package for simulation longitudinal health care 
+claims data.
 }
 \author{
 Louis Dijkstra

@@ -1,3 +1,14 @@
+##############################################
+# riskFunctions.R 
+#
+# Contains all the risk models. 
+# They model how the risk of suffering the ADE
+# changes the history of drug prescriptions
+# of the patient. 
+# The risk functions return values between 0 and 
+# 1. Zero is minimal risk, 1 is full risk. 
+##############################################
+
 #' @export
 risk_no_effect <- function() { 
   function(drug_prescriptions, ...) { 

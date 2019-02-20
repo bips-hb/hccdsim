@@ -4,11 +4,4 @@ plot_risk <- function(drug_prescriptions, risk_function = risk_immediate(), ylim
     risk_function(x[1:i]))
   
   plot(1:length(drug_prescriptions), risks, ylim = ylim)
-  # 
-  # return(
-  #   list(
-  #     drug_prescriptions = drug_prescriptions,
-  #     risks = risks 
-  #   )
-  # )
 }

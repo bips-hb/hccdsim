@@ -2,7 +2,7 @@
 % Please edit documentation in R/adeEffectModels.R
 \name{ade_model_full_stop}
 \alias{ade_model_full_stop}
-\title{Full Stop}
+\title{The ADE model 'full stop'}
 \usage{
 ade_model_full_stop(drug_ade_both = FALSE)
 }
@@ -15,6 +15,14 @@ is prescribed the drug at the same time step}
 An ADE model function
 }
 \description{
-Returns a ADE effect model. It stops the prescription of the drug
-completely (hence, full stop) when the ADE occurs.
+This function models the effect of the appearance
+of an ADE on the drug prescriptions of patient. 
+In this case, the appearance of an ADE stops any 
+future drug prescription. This can, for example, 
+reflect that the ADE is so severe, that the drug 
+is never prescriped again.
 }
+\seealso{
+Other ADE effect models: \code{\link{ade_model_no_effect}}
+}
+\concept{ADE effect models}

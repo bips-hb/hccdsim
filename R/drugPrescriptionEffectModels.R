@@ -1,3 +1,19 @@
+##############################################
+# drugPrescriptionEffectModels.R 
+#
+# Contains all the possible drug prescription 
+# effect models. They model the way in which
+# the drug is prescriped over time, given 
+# the history of the drug's prescriptions.
+##############################################
+
+#' The Drug Prescription Model 'Markov Chain'
+#' 
+#' The drug prescriptions are modelled as a
+#' Markov Chain. 
+#' 
+#' @return A drug prescription model function
+#' @family drug prescription effect models
 #' @export 
 prescription_model_markov_chain <- function() { 
   function(drug_prescriptions, ...) { 
@@ -9,7 +25,16 @@ prescription_model_markov_chain <- function() {
   }
 }
 
-#' @export
+#' The Drug Prescription Model 'duration'
+#' 
+#' The drug is prescriped for maximally the 
+#' given duration (number of time steps)
+#' 
+#' @param duration The duration that the drug is prescribed
+#' 
+#' @return A drug prescription model function
+#' @family drug prescription effect models
+#' @export 
 prescription_model_duration <- function(duration) { 
   if (duration < 2) { 
     stop("duration should at least be 2") 

@@ -1,9 +1,7 @@
-#' hccdsim
-#'
-#' A package for simulating longitudinal health care claim data
+#' hccdsim: A package for simulation longitudinal health care 
+#' claims data.
 #'
 #' @docType package
 #' @author Louis Dijkstra
 #' @name hccdsim
 NULL
-
