@@ -29,4 +29,3 @@ time point (1) or not (0).
 \seealso{
 Other Update functions: \code{\link{update_drug_prescription}}
 }
-\concept{Update functions}

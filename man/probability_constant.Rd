@@ -21,4 +21,3 @@ probability.
 \seealso{
 Other Probability models: \code{\link{probability_sex}}
 }
-\concept{Probability models}

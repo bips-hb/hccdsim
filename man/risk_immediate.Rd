@@ -26,4 +26,3 @@ Other Risk models: \code{\link{risk_increase_decrease}},
   \code{\link{risk_no_effect}},
   \code{\link{risk_withdrawal}}
 }
-\concept{Risk models}

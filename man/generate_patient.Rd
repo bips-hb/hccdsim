@@ -4,8 +4,7 @@
 \alias{generate_patient}
 \title{Generate a Patient}
 \usage{
-generate_patient(simulation_time = 100,
-  risk_function = risk_immediate(),
+generate_patient(simulation_time = 100, risk_function = risk_immediate(),
   prescription_model = prescription_model_markov_chain(),
   ade_model = ade_model_no_effect(),
   min_chance_drug = probability_constant(0.01),

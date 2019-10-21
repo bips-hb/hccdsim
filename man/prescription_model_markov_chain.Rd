@@ -16,4 +16,3 @@ Markov Chain.
 \seealso{
 Other drug prescription effect models: \code{\link{prescription_model_duration}}
 }
-\concept{drug prescription effect models}

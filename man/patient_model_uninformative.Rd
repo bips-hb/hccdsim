@@ -21,4 +21,3 @@ All patients are the same.
 \seealso{
 Other Patient models: \code{\link{patient_model_sex}}
 }
-\concept{Patient models}

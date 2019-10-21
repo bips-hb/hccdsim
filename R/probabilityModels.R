@@ -21,7 +21,9 @@
 #' @family Probability models
 #' @export
 probability_constant <- function(prob, ...) { 
-  prob
+  function(...) { 
+    prob
+  }
 }
 
 #' Probability Model 'Sex'
@@ -32,17 +34,24 @@ probability_constant <- function(prob, ...) {
 #' 
 #' @param prob_male,prob_female The probabilities
 #'         when the patient is either male or female
-#' @param patient The patient 
 #' 
 #' @return A probability model function
 #' @family Probability models
 #' @export
 #' @export
-probability_sex <- function(prob_male, prob_female, patient, ...) { 
-   if (patient$sex == "male") { 
+probability_sex <- function(prob_male, prob_female, ...) { 
+  function(patient, ...) { 
+    
+    # check whether the sex of the patient is specified
+    if (!("sex" %in% names(patient))) { 
+       stop("the sex of the patient should be specified")
+    }
+    
+    if (patient$sex == "male") { 
       prob_male
-   } else { 
+    } else { 
       prob_female 
-   }
+    }
+  }
 }
 

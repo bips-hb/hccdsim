@@ -24,4 +24,3 @@ In this case, the patient has only the covariate
 \seealso{
 Other Patient models: \code{\link{patient_model_uninformative}}
 }
-\concept{Patient models}

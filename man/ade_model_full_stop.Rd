@@ -25,4 +25,3 @@ is never prescriped again.
 \seealso{
 Other ADE effect models: \code{\link{ade_model_no_effect}}
 }
-\concept{ADE effect models}

@@ -4,13 +4,11 @@
 \alias{probability_sex}
 \title{Probability Model 'Sex'}
 \usage{
-probability_sex(prob_male, prob_female, patient, ...)
+probability_sex(prob_male, prob_female, ...)
 }
 \arguments{
 \item{prob_male, prob_female}{The probabilities
 when the patient is either male or female}
-
-\item{patient}{The patient}
 }
 \value{
 A probability model function
@@ -23,4 +21,3 @@ the sex of the patient changes the probability.
 \seealso{
 Other Probability models: \code{\link{probability_constant}}
 }
-\concept{Probability models}

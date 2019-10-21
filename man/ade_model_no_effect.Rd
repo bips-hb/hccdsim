@@ -19,4 +19,3 @@ drug.
 \seealso{
 Other ADE effect models: \code{\link{ade_model_full_stop}}
 }
-\concept{ADE effect models}

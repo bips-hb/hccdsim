@@ -23,8 +23,10 @@ update_drug_prescription <- function(drug_prescriptions,
                                      prescription_model,
                                      ade_model,
                                      min_chance,
-                                     max_chance, ...) { 
-  prob <- ade_model(drug_prescriptions, ade_progression, ...) * (min_chance + (max_chance - min_chance) * 
+                                     max_chance, 
+                                     patient_profile, ...) { 
+  prob <- ade_model(drug_prescriptions, ade_progression, ...) * 
+                (min_chance(patient_profile) + (max_chance(patient_profile) - min_chance(patient_profile)) * 
                                                       prescription_model(drug_prescriptions, ...))
   rbinom(1,1,prob)
 }

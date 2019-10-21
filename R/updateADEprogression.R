@@ -17,7 +17,9 @@
 update_ade_progression <- function(drug_prescriptions, 
                                    risk_function, 
                                    min_chance,
-                                   max_chance, ...) { 
-  prob <- min_chance + (max_chance - min_chance) * risk_function(drug_prescriptions, ...)
+                                   max_chance, 
+                                   patient_profile, ...) { 
+  prob <- min_chance(patient_profile) + 
+          (max_chance(patient_profile) - min_chance(patient_profile)) * risk_function(drug_prescriptions, ...)
   rbinom(1,1,prob)
 }

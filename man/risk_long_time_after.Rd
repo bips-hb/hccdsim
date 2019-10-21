@@ -31,4 +31,3 @@ Other Risk models: \code{\link{risk_immediate}},
   \code{\link{risk_no_effect}},
   \code{\link{risk_withdrawal}}
 }
-\concept{Risk models}

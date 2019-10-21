@@ -30,20 +30,20 @@ generate_patient <- function(simulation_time = 100,
                              max_chance_drug = probability_constant(.5),
                              min_chance_ade = probability_constant(.001), 
                              max_chance_ade = probability_constant(.2), 
-                             patient = NULL) { 
+                             patient_profile = NULL) { 
   
   # determine first time the drug is prescribed 
-  t <- determine_first_prescription(simulation_time, min_chance_drug) 
+  t <- determine_first_prescription(simulation_time, min_chance_drug(patient_profile)) 
   
   # initialize the drug and ade time processes 
   drug_prescriptions <- c(rep(0, t - 1), 1, rep(NA, simulation_time - t))
-  ade_progression <- c(rbinom(t - 1, 1, min_chance_ade), rep(NA, simulation_time - t + 1))
+  ade_progression <- c(rbinom(t - 1, 1, min_chance_ade(patient_profile)), rep(NA, simulation_time - t + 1))
   
   ade_progression[t] <- update_ade_progression(drug_prescriptions[1:(t-1)],
                                      risk_function, 
                                      min_chance_ade,
                                      max_chance_ade, 
-                                     patient) 
+                                     patient_profile) 
   
   if (t == simulation_time) { 
     return(
@@ -63,16 +63,17 @@ generate_patient <- function(simulation_time = 100,
                                                                ade_model, 
                                                                min_chance_drug,
                                                                max_chance_drug, 
-                                                               patient)
+                                                               patient_profile)
             ade_progression[k] <<- update_ade_progression(drug_prescriptions[1:k],
                                                           risk_function, 
                                                           min_chance_ade,
                                                           max_chance_ade, 
-                                                          patient) 
+                                                          patient_profile) 
          }) 
   
   list(
     drug_prescriptions = drug_prescriptions,
-    ade_progression = ade_progression
+    ade_progression = ade_progression,
+    patient_profile = patient_profile
   )
 }
