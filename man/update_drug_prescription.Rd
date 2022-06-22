@@ -4,8 +4,16 @@
 \alias{update_drug_prescription}
 \title{Update Drug Prescription}
 \usage{
-update_drug_prescription(drug_prescriptions, ade_progression,
-  prescription_model, ade_model, min_chance, max_chance, ...)
+update_drug_prescription(
+  drug_prescriptions,
+  ade_progression,
+  prescription_model,
+  ade_model,
+  min_chance,
+  max_chance,
+  patient_profile,
+  ...
+)
 }
 \arguments{
 \item{drug_prescriptions}{Binary vector denoting the 
@@ -33,5 +41,7 @@ Returns whether or not the drug is prescribed
 at the next time point (1) or not (0).
 }
 \seealso{
-Other Update functions: \code{\link{update_ade_progression}}
+Other Update functions: 
+\code{\link{update_ade_progression}()}
 }
+\concept{Update functions}

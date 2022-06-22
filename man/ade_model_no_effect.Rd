@@ -10,12 +10,13 @@ ade_model_no_effect()
 An ADE model function
 }
 \description{
-This function models the effect of the appearance
-of an ADE on the drug prescriptions of patient. 
-In this case, the appearance of an ADE has no 
-effect what so ever on the prescription of a
-drug.
+\code{ade_model_no_effect} models the effect of 
+the appearance of an ADE on the drug prescriptions 
+of patient. In this case, the appearance of an ADE 
+has no effect on the prescription of a drug.
 }
 \seealso{
-Other ADE effect models: \code{\link{ade_model_full_stop}}
+Other ADE effect models: 
+\code{\link{ade_model_full_stop}()}
 }
+\concept{ADE effect models}

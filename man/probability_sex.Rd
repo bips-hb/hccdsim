@@ -19,5 +19,7 @@ change with the type of patient. In this case,
 the sex of the patient changes the probability.
 }
 \seealso{
-Other Probability models: \code{\link{probability_constant}}
+Other Probability models: 
+\code{\link{probability_constant}()}
 }
+\concept{Probability models}

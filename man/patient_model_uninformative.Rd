@@ -19,5 +19,7 @@ In this case, the patient has no covariates.
 All patients are the same.
 }
 \seealso{
-Other Patient models: \code{\link{patient_model_sex}}
+Other Patient models: 
+\code{\link{patient_model_sex}()}
 }
+\concept{Patient models}

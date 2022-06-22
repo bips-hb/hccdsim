@@ -24,8 +24,10 @@ reaches its peak after \code{peak} time points. Then
 it goes down at the same rate before it is zero again.
 }
 \seealso{
-Other Risk models: \code{\link{risk_immediate}},
-  \code{\link{risk_long_time_after}},
-  \code{\link{risk_no_effect}},
-  \code{\link{risk_withdrawal}}
+Other Risk models: 
+\code{\link{risk_immediate}()},
+\code{\link{risk_long_time_after}()},
+\code{\link{risk_no_effect}()},
+\code{\link{risk_withdrawal}()}
 }
+\concept{Risk models}

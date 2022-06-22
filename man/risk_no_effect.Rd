@@ -20,8 +20,10 @@ In this case, the drug has no effect on the ADE
 what so ever.
 }
 \seealso{
-Other Risk models: \code{\link{risk_immediate}},
-  \code{\link{risk_increase_decrease}},
-  \code{\link{risk_long_time_after}},
-  \code{\link{risk_withdrawal}}
+Other Risk models: 
+\code{\link{risk_immediate}()},
+\code{\link{risk_increase_decrease}()},
+\code{\link{risk_long_time_after}()},
+\code{\link{risk_withdrawal}()}
 }
+\concept{Risk models}

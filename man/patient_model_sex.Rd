@@ -22,5 +22,7 @@ In this case, the patient has only the covariate
 `sex'.
 }
 \seealso{
-Other Patient models: \code{\link{patient_model_uninformative}}
+Other Patient models: 
+\code{\link{patient_model_uninformative}()}
 }
+\concept{Patient models}

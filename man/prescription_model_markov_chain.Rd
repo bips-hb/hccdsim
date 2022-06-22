@@ -14,5 +14,7 @@ The drug prescriptions are modelled as a
 Markov Chain.
 }
 \seealso{
-Other drug prescription effect models: \code{\link{prescription_model_duration}}
+Other drug prescription effect models: 
+\code{\link{prescription_model_duration}()}
 }
+\concept{drug prescription effect models}

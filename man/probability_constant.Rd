@@ -19,5 +19,7 @@ the type of patient has no effect on the
 probability.
 }
 \seealso{
-Other Probability models: \code{\link{probability_sex}}
+Other Probability models: 
+\code{\link{probability_sex}()}
 }
+\concept{Probability models}

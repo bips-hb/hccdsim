@@ -4,7 +4,9 @@
 \alias{generate_cohort}
 \title{Generate a Patient}
 \usage{
-generate_cohort(n_patients = 1000, simulation_time = 100,
+generate_cohort(
+  n_patients = 1000,
+  simulation_time = 100,
   risk_function = risk_immediate(),
   prescription_model = prescription_model_markov_chain(),
   ade_model = ade_model_no_effect(),
@@ -12,7 +14,9 @@ generate_cohort(n_patients = 1000, simulation_time = 100,
   max_chance_drug = probability_constant(0.5),
   min_chance_ade = probability_constant(0.001),
   max_chance_ade = probability_constant(0.2),
-  patient_model = patient_model_sex(0.5), verbose = FALSE)
+  patient_model = patient_model_uninformative(),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{n_patients}{Number of patients}

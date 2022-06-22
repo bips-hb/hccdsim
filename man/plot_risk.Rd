@@ -4,8 +4,12 @@
 \alias{plot_risk}
 \title{Plot Risk}
 \usage{
-plot_risk(drug_prescriptions, risk_function = risk_immediate(), title = "",
-  ylim = c(0, 1))
+plot_risk(
+  drug_prescriptions,
+  risk_function = risk_immediate(),
+  title = "",
+  ylim = c(0, 1)
+)
 }
 \arguments{
 \item{drug_prescriptions}{Binary vector denoting the 

@@ -4,8 +4,14 @@
 \alias{update_ade_progression}
 \title{Update ADE Progression}
 \usage{
-update_ade_progression(drug_prescriptions, risk_function, min_chance,
-  max_chance, ...)
+update_ade_progression(
+  drug_prescriptions,
+  risk_function,
+  min_chance,
+  max_chance,
+  patient_profile,
+  ...
+)
 }
 \arguments{
 \item{drug_prescriptions}{Binary vector denoting the 
@@ -27,5 +33,7 @@ Returns whether or not the ADE occurs at the next
 time point (1) or not (0).
 }
 \seealso{
-Other Update functions: \code{\link{update_drug_prescription}}
+Other Update functions: 
+\code{\link{update_drug_prescription}()}
 }
+\concept{Update functions}

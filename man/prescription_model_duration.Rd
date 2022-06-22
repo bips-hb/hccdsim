@@ -17,5 +17,7 @@ The drug is prescriped for maximally the
 given duration (number of time steps)
 }
 \seealso{
-Other drug prescription effect models: \code{\link{prescription_model_markov_chain}}
+Other drug prescription effect models: 
+\code{\link{prescription_model_markov_chain}()}
 }
+\concept{drug prescription effect models}

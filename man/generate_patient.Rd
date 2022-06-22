@@ -4,13 +4,17 @@
 \alias{generate_patient}
 \title{Generate a Patient}
 \usage{
-generate_patient(simulation_time = 100, risk_function = risk_immediate(),
+generate_patient(
+  simulation_time = 100,
+  risk_function = risk_immediate(),
   prescription_model = prescription_model_markov_chain(),
   ade_model = ade_model_no_effect(),
   min_chance_drug = probability_constant(0.01),
   max_chance_drug = probability_constant(0.5),
   min_chance_ade = probability_constant(0.001),
-  max_chance_ade = probability_constant(0.2), patient = NULL)
+  max_chance_ade = probability_constant(0.2),
+  patient_profile = NULL
+)
 }
 \arguments{
 \item{simulation_time}{The total number of time steps}
@@ -28,13 +32,13 @@ when the drug history and the ADE history have no effect}
 the drug history and the ADE history have the highest 
 possible effect}
 
-\item{patient}{A list with the covariates of the patient (Default: \code{NULL})}
-
 \item{min_chance}{The probability of the ADE when 
 the drug history has no effect}
 
 \item{max_chance}{The probability of the ADE when 
 the drug history has the highest possible effect}
+
+\item{patient}{A list with the covariates of the patient (Default: \code{NULL})}
 }
 \value{
 A list with a vector of the drug prescriptions and the 

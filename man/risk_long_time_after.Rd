@@ -26,8 +26,10 @@ only after a certian moment in time before it
 reaches the maximal risk.
 }
 \seealso{
-Other Risk models: \code{\link{risk_immediate}},
-  \code{\link{risk_increase_decrease}},
-  \code{\link{risk_no_effect}},
-  \code{\link{risk_withdrawal}}
+Other Risk models: 
+\code{\link{risk_immediate}()},
+\code{\link{risk_increase_decrease}()},
+\code{\link{risk_no_effect}()},
+\code{\link{risk_withdrawal}()}
 }
+\concept{Risk models}

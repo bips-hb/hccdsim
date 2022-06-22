@@ -7,21 +7,23 @@
 ade_model_full_stop(drug_ade_both = FALSE)
 }
 \arguments{
-\item{drug_ade_both}{If true, the prescriptions only stop 
+\item{drug_ade_both}{If \code{TRUE}, the prescriptions only stop 
 when the ADE takes place when the patient
-is prescribed the drug at the same time step}
+is prescribed the drug at the same time step (Default: \code{FALSE})}
 }
 \value{
 An ADE model function
 }
 \description{
-This function models the effect of the appearance
-of an ADE on the drug prescriptions of patient. 
-In this case, the appearance of an ADE stops any 
-future drug prescription. This can, for example, 
+\code{ade_model_full_stop} models the effect of 
+the appearanceof an ADE on the drug prescriptions 
+of patient. In this case, the appearance of an ADE 
+stops any future drug prescription. This can, for example, 
 reflect that the ADE is so severe, that the drug 
-is never prescriped again.
+is never prescribed again.
 }
 \seealso{
-Other ADE effect models: \code{\link{ade_model_no_effect}}
+Other ADE effect models: 
+\code{\link{ade_model_no_effect}()}
 }
+\concept{ADE effect models}

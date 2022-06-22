@@ -4,20 +4,31 @@
 \alias{determine_first_prescription}
 \title{First Prescription}
 \usage{
-determine_first_prescription(simulation_time, min_chance_drug)
+determine_first_prescription(n_patients, simulation_time, min_chance_drug)
 }
 \arguments{
+\item{n_patients}{Number of patients (Default: 1)}
+
 \item{simulation_time}{The total number of time points for this patient}
 
 \item{min_chance_drug}{The probability of the drug being prescribed 
-when previous prescriptions have no influence 
-on the current time point}
+at any given time point}
 }
 \value{
-A value between 1 and \code{simulation_time}
+A time point between \code{1} and \code{simulation_time}
 }
 \description{
-This function is used for modelling patients 
-that are exposed to the drug at least once 
-during simulation time.
+\code{determine_first_perscription} returns a time point
+for the first prescription of the drug of interest 
+given the time frame of the patient (\code{simulation_time})
+and the chance for it be prescribed is \code{min_chance_drug}.
+}
+\details{
+We assume here that the probability of the drug being prescribed
+does not depend on any previous prescriptions.
+}
+\examples{
+set.seed(1)
+determine_first_prescription(n_patients = 4, simulation_time = 10, min_chance_drug = 0.1)
+# -> [1] 2 3 5 9 
 }

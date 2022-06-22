@@ -24,8 +24,10 @@ to the drug, the probability of the ADE peaks
 and then dissipates exponentially.
 }
 \seealso{
-Other Risk models: \code{\link{risk_immediate}},
-  \code{\link{risk_increase_decrease}},
-  \code{\link{risk_long_time_after}},
-  \code{\link{risk_no_effect}}
+Other Risk models: 
+\code{\link{risk_immediate}()},
+\code{\link{risk_increase_decrease}()},
+\code{\link{risk_long_time_after}()},
+\code{\link{risk_no_effect}()}
 }
+\concept{Risk models}
