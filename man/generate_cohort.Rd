@@ -5,8 +5,8 @@
 \title{Generate a Cohort}
 \usage{
 generate_cohort(
-  n_patients = 1000,
-  simulation_time = 100,
+  n_patients = 100,
+  simulation_time = 30,
   risk_function = risk_immediate(),
   prescription_model = prescription_model_markov_chain(),
   ade_model = ade_model_no_effect(),

@@ -5,7 +5,7 @@
 \title{Plot Risk}
 \usage{
 plot_risk(
-  drug_prescriptions,
+  drug_prescriptions = c(rep(0, 4), rep(1, 6), rep(0, 10)),
   risk_function = risk_immediate(),
   title = "",
   ylim = c(0, 1)
@@ -13,15 +13,34 @@ plot_risk(
 }
 \arguments{
 \item{drug_prescriptions}{Binary vector denoting the 
-drug prescription history}
+      drug prescription history. 
+(Default: \code{0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0})}
 
 \item{risk_function}{One of the risk models}
 
 \item{title}{Title of the plot}
 
-\item{ylim}{The limits of the y-axis: \code{c(ymin, ymax)}}
+\item{ylim}{The limits of the y-axis: \code{c(ymin, ymax)} 
+(Default: \code{c(0,1)})}
+}
+\value{
+A \code{ggplot2} plot
 }
 \description{
 Plots the risk function's behavior for 
-a given drug prescription history
+a given drug prescription history. 
+The \eqn{x}-axis denote the 
+drug prescriptions and the \eqn{y}-axis represent the 
+risk level, i.e., \code{1} is maximal risk, \code{0}
+minimal risk.
+}
+\examples{
+drug_prescriptions <- c(rep(0, 4), rep(1, 6), rep(0, 10))
+risk_function <- risk_immediate() 
+
+# create the plot
+p <- plot_risk(drug_prescriptions, 
+               risk_function, 
+               title = "Direct effect model")
+p
 }
