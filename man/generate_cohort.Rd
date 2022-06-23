@@ -2,7 +2,7 @@
 % Please edit documentation in R/generateCohort.R
 \name{generate_cohort}
 \alias{generate_cohort}
-\title{Generate a Patient}
+\title{Generate a Cohort}
 \usage{
 generate_cohort(
   n_patients = 1000,
@@ -37,11 +37,19 @@ the drug history and the ADE history have the highest
 possible effect}
 }
 \value{
-A list with two matrices: the drug prescriptions and the 
-        the ADE progression. Each row is a different patient
+A \code{cohort} object; a list with 
+      \item{\code{n_patients}}{The total number of patients}
+      \item{\code{simulation_time}}{The total number of time steps}
+      \item{\code{drug_prescriptions}}{A binary matrix with \code{n_patients}
+            rows and \code{simulation_time} columns}
+      \item{\code{ade_progression}}{A binary matrix with \code{n_patients}
+            rows and \code{simulation_time} columns}
+      \item{\code{patient_profile}}{A list with the patient profiles for each patient}
 }
 \description{
-Generates an individual patient
+Generates a cohort of patients, each with a 
+drug prescription and ADE progression history. 
+See for more information and details \code{\link{generate_patient}}.
 }
 \seealso{
 \code{\link{generate_patient}}

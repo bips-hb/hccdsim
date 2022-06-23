@@ -1,18 +1,25 @@
-#' Generate a Patient 
+#' Generate a Cohort 
 #' 
-#' Generates an individual patient
+#' Generates a cohort of patients, each with a 
+#' drug prescription and ADE progression history. 
+#' See for more information and details \code{\link{generate_patient}}.
 #' 
 #' @param n_patients Number of patients 
 #' @inheritParams generate_patient
 #' 
-#' @return A list with two matrices: the drug prescriptions and the 
-#'         the ADE progression. Each row is a different patient
+#' @return A \code{cohort} object; a list with 
+#'       \item{\code{n_patients}}{The total number of patients}
+#'       \item{\code{simulation_time}}{The total number of time steps}
+#'       \item{\code{drug_prescriptions}}{A binary matrix with \code{n_patients}
+#'             rows and \code{simulation_time} columns}
+#'       \item{\code{ade_progression}}{A binary matrix with \code{n_patients}
+#'             rows and \code{simulation_time} columns}
+#'       \item{\code{patient_profile}}{A list with the patient profiles for each patient}
 #'
 #' @seealso \code{\link{generate_patient}}                  
 #' @export
-#' @export
-generate_cohort <- function(n_patients = 1000, 
-                            simulation_time = 100, 
+generate_cohort <- function(n_patients = 100, 
+                            simulation_time = 30, 
                             risk_function = risk_immediate(), 
                             prescription_model = prescription_model_markov_chain(),
                             ade_model = ade_model_no_effect(), 
@@ -57,9 +64,41 @@ generate_cohort <- function(n_patients = 1000,
     close(pb) 
   }
   
-  list(
+  res <- list(
+    n_patients = n_patients, 
+    simulation_time = simulation_time,  
     drug_prescriptions = drug_prescriptions,
     ade_progression = ade_progression,
     patient_profiles = patient_profiles
   )
+  class(res) <- "cohort"
+  return(res)
+}
+
+#' Print function for \code{\link{generate_cohort}}
+#' @export
+print.cohort <- function(cohort) { 
+  cat(sprintf("No. patients: %d     No. of time points: %d\n\n", 
+              cohort$n_patients,
+              cohort$simulation_time))
+  
+  for (i in 1:cohort$n_patients) { 
+    cat(sprintf("patient %d   drugs: ", i)) 
+    for(t in 1:cohort$simulation_time) {
+      if (cohort$drug_prescriptions[i, t] == 1) {
+        cat(green(1))
+      } else {
+        cat(blue("."))
+      }
+    }
+    cat(sprintf("\npatient %d   ADE:   ", i))
+    for(t in 1:cohort$simulation_time) { 
+        if (cohort$ade_progression[i, t] == 1) {
+          cat(red(1))
+        } else {
+          cat(blue("."))
+        }
+    }
+    cat(sprintf("\n\n")) 
+  }
 }

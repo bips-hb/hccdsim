@@ -10,8 +10,19 @@ prescription_model_markov_chain()
 A drug prescription model function
 }
 \description{
-The drug prescriptions are modelled as a
-Markov Chain.
+\code{prescription_model_markov_chain} returns a 
+drug prescription model function. The returned
+function models the drug prescription time series
+as a simple Markov chain model.
+}
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+
+# returns an ADE model function
+prescription_model <- prescription_model_markov_chain() 
+
+# apply the model
+prescription_model(drug_prescriptions)
 }
 \seealso{
 Other drug prescription effect models: 

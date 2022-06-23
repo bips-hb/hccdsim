@@ -21,6 +21,10 @@
 #' 
 #' @return A patient model function
 #' @family Patient models
+#' @examples 
+#' patient_model <- patient_model_uninformative() 
+#' patient_model()
+#' # -> empty list. There are no attributes assigned to the patient
 #' @export
 patient_model_uninformative <- function(...) { 
   function() { 
@@ -38,12 +42,17 @@ patient_model_uninformative <- function(...) {
 #' In this case, the patient has only the covariate
 #' `sex'.  
 #' 
-#' @param prob_male The probability that the patient is 'male'
+#' @param prob_male The probability that the 
+#'                  patient is 'male' (Default: \code{0.5})
 #' 
 #' @return A patient model function
 #' @family Patient models
+#' @examples 
+#' patient_model <- patient_model_sex(prob_male = .4)
+#' patient_model()
+#' # -> list with only item 'sex'
 #' @export
-patient_model_sex <- function(prob_male) {
+patient_model_sex <- function(prob_male = 0.5) {
   function() {
     if (rbinom(1, 1, prob_male) == 1) {
       list(sex = "male")

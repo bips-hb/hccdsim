@@ -1,4 +1,4 @@
-#' hccdsim: A package for simulation longitudinal health care 
+#' \code{hccdsim}: A package for simulation longitudinal health care 
 #' claims data.
 #'
 #' @docType package

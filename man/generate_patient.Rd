@@ -41,11 +41,49 @@ the drug history has the highest possible effect}
 \item{patient}{A list with the covariates of the patient (Default: \code{NULL})}
 }
 \value{
-A list with a vector of the drug prescriptions and the 
-        the ADE progression
+A \code{patient} object; a list with 
+      \item{\code{drug_prescriptions}}{binary vector of the 
+               drug prescription history}
+      \item{\code{ade_progression}}{binary vector of the 
+               ade progression}
+      \item{\code{simulation_time}}{The total number of time steps}
+      \item{\code{patient_profile}}{A list with patient characteristics}
 }
 \description{
-Generates an individual patient
+Generates the drug prescription and 
+ADE history of an individual patient.
+}
+\examples{
+# create a patient
+patient_model <- patient_model_sex(prob_male = 0.5)
+(patient_profile <- patient_model())
+
+# choose a risk function
+risk_function <- risk_immediate()
+
+# how the drug is prescribed over time
+prescription_model <- prescription_model_markov_chain() 
+
+# how the occurence of an ADE affect the prescription of the drug
+ade_model = ade_model_no_effect()
+
+# minimum and maximal probabilities for the drug being prescribed
+min_chance_drug <- probability_sex(prob_male = .1, prob_female = .2)
+max_chance_drug <- probability_sex(prob_male = .5, prob_female = .53)
+
+# minimum and maximal probabilities for the ADE occurring 
+min_chance_ade <- probability_sex(prob_male = .01, prob_female = .05)
+max_chance_ade <- probability_sex(prob_male = .2, prob_female = .3)
+
+generate_patient(simulation_time = 100, 
+                 risk_function, 
+                 prescription_model,
+                 ade_model, 
+                 min_chance_drug,
+                 max_chance_drug,
+                 min_chance_ade, 
+                 max_chance_ade, 
+                 patient_profile = patient_profile)                
 }
 \seealso{
 \code{\link{generate_cohort}}

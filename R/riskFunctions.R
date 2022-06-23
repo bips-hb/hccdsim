@@ -22,10 +22,15 @@
 #' 
 #' @return A risk function
 #' @family Risk models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0)
+#' risk_function <- risk_no_effect() 
+#' risk_function() 
+#' # -> 0
 #' @export
 risk_no_effect <- function() { 
   function(drug_prescriptions, ...) { 
-    0 
+    0 # always lowest risk
   }
 }
 
@@ -43,13 +48,17 @@ risk_no_effect <- function() {
 #' 
 #' @return A risk function
 #' @family Risk models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0)
+#' risk_function <- risk_immediate() 
+#' risk_function(drug_prescriptions) 
 #' @export
 risk_immediate <- function() {
   function(drug_prescriptions, ...) { 
     if (drug_prescriptions[length(drug_prescriptions)]) { 
-      1  
+      1  # highest risk
     } else {
-      0  
+      0  # lowest risk
     }
   }
 }
@@ -59,19 +68,35 @@ risk_immediate <- function() {
 #' A risk model reflects how the probability of 
 #' suffering the ADE changes the history of 
 #' drug prescriptions of the patient. 
-#' It returns 0 when the drug prescription history
-#' has no effect, and 1 when the patient is at 
+#' It returns \code{0} when the drug prescription history
+#' has no effect, and \code{1} when the patient is at 
 #' maximal risk.  
 #' In this case, once the patient is no longer exposed
 #' to the drug, the probability of the ADE peaks 
 #' and then dissipates exponentially. 
+#' Let \eqn{\tau} be the number of time points since
+#' the patient was prescribed the drug last. The return
+#' value is the given by 
+#' \deqn{\exp(-\gamma \cdot (\tau - 1))} 
+#' where \eqn{\gamma} is \code{rate}.
 #' 
 #' @param rate The rate with which the risk dissipates
 #' 
 #' @return A risk function
 #' @family Risk models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0)
+#' 
+#' risk_function <- risk_withdrawal(rate = 1.2) 
+#' risk_function(drug_prescriptions) 
 #' @export
 risk_withdrawal <- function(rate) {
+  
+  # check correctness input
+  if (rate <= 0) { 
+    stop("rate should be > 0") 
+  }
+  
   function(drug_prescriptions, ...) { 
     # if case the drug was never prescribed or the drug is 
     # currently prescribed 
@@ -90,18 +115,31 @@ risk_withdrawal <- function(rate) {
 #' A risk model reflects how the probability of 
 #' suffering the ADE changes the history of 
 #' drug prescriptions of the patient. 
-#' It returns 0 when the drug prescription history
-#' has no effect, and 1 when the patient is at 
+#' It returns \code{0} when the drug prescription history
+#' has no effect, and \code{1} when the patient is at 
 #' maximal risk.  
 #' In this case, the risk of the ADE increases
 #' only after a certian moment in time before it 
 #' reaches the maximal risk.
+#' Let \eqn{t_0} be the time point that the drug
+#' was prescribed for the first time, and \eqn{\delta}
+#' be the number of time points since first description
+#' that the function returns 0.5 ("half way"). The 
+#' return value is 
+#' \deqn{1 / (1 + \exp(-\gamma \cdot (t_0 - \delta)))} 
+#' where \eqn{\gamma} is \code{rate}. Note that this 
+#' is a sigmoid function.  
 #' 
 #' @param rate The rate with which the risk increases
 #' @param delay How long it takes before the risk is .5
 #' 
 #' @return A risk function
 #' @family Risk models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+#' 
+#' risk_function <- risk_long_time_after(rate = .5, delay = 9) 
+#' risk_function(drug_prescriptions) 
 #' @export
 risk_long_time_after <- function(rate, delay) {
   function(drug_prescriptions, ...) { 
@@ -125,17 +163,22 @@ risk_long_time_after <- function(rate, delay) {
 #' A risk model reflects how the probability of 
 #' suffering the ADE changes the history of 
 #' drug prescriptions of the patient. 
-#' It returns 0 when the drug prescription history
-#' has no effect, and 1 when the patient is at 
+#' It returns \code{0} when the drug prescription history
+#' has no effect, and \code{1} when the patient is at 
 #' maximal risk.  
 #' In this case, the risk first increases linearly and 
 #' reaches its peak after \code{peak} time points. Then 
-#' it goes down at the same rate before it is zero again. 
+#' it goes down at the same rate before it hits zero again. 
 #' 
 #' @param peak The point at which the risk peaks
 #' 
 #' @return A risk function
 #' @family Risk models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+#' 
+#' risk_function <- risk_increase_decrease(peak = 3) 
+#' risk_function(drug_prescriptions) 
 #' @export
 risk_increase_decrease <- function(peak) { 
   

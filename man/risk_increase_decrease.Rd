@@ -16,12 +16,18 @@ A risk function
 A risk model reflects how the probability of 
 suffering the ADE changes the history of 
 drug prescriptions of the patient. 
-It returns 0 when the drug prescription history
-has no effect, and 1 when the patient is at 
+It returns \code{0} when the drug prescription history
+has no effect, and \code{1} when the patient is at 
 maximal risk.  
 In this case, the risk first increases linearly and 
 reaches its peak after \code{peak} time points. Then 
-it goes down at the same rate before it is zero again.
+it goes down at the same rate before it hits zero again.
+}
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+risk_function <- risk_increase_decrease(peak = 3) 
+risk_function(drug_prescriptions) 
 }
 \seealso{
 Other Risk models: 

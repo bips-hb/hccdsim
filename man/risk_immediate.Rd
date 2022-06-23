@@ -20,6 +20,11 @@ In this case, the probability of the ADE
 is maximal only when the patient is currently
 exposed.
 }
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+risk_function <- risk_immediate() 
+risk_function(drug_prescriptions) 
+}
 \seealso{
 Other Risk models: 
 \code{\link{risk_increase_decrease}()},

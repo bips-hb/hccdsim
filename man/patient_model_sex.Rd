@@ -4,10 +4,11 @@
 \alias{patient_model_sex}
 \title{Patient Model 'Sex'}
 \usage{
-patient_model_sex(prob_male)
+patient_model_sex(prob_male = 0.5)
 }
 \arguments{
-\item{prob_male}{The probability that the patient is 'male'}
+\item{prob_male}{The probability that the 
+patient is 'male' (Default: \code{0.5})}
 }
 \value{
 A patient model function
@@ -20,6 +21,11 @@ in any of the other models: drug prescription
 models, ADE effect models etc.  
 In this case, the patient has only the covariate
 `sex'.
+}
+\examples{
+patient_model <- patient_model_sex(prob_male = .4)
+patient_model()
+# -> list with only item 'sex'
 }
 \seealso{
 Other Patient models: 

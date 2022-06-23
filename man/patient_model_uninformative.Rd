@@ -18,6 +18,11 @@ models, ADE effect models etc.
 In this case, the patient has no covariates. 
 All patients are the same.
 }
+\examples{
+patient_model <- patient_model_uninformative() 
+patient_model()
+# -> empty list. There are no attributes assigned to the patient
+}
 \seealso{
 Other Patient models: 
 \code{\link{patient_model_sex}()}

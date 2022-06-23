@@ -18,6 +18,19 @@ Probability models define how probabilities
 change with the type of patient. In this case,
 the sex of the patient changes the probability.
 }
+\examples{
+set.seed(1)
+
+# create a patient model with sex
+patient_model <- patient_model_sex(prob_male = .5)
+
+# generate a patient
+(patient <- patient_model())
+
+# create a probability model
+probability_model <- probability_sex(prob_male = .8, prob_female = .3)
+probability_model(patient) 
+}
 \seealso{
 Other Probability models: 
 \code{\link{probability_constant}()}

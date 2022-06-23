@@ -23,6 +23,13 @@
 #' @export
 determine_first_prescription <- function(n_patients, simulation_time, min_chance_drug) { 
   
+  # check correctness input --------
+  if (n_patients < 1)      { stop("n_patients should be >= 1") }
+  if (simulation_time < 1) { stop("simulation_time should be >= 1") }
+  if (min_chance_drug <= 0 || min_chance_drug > 1) { 
+    stop("min_chance_drug should be in the interval (0,1]") 
+  }
+  
   # determining the probabilities that the drug is prescribed at each
   # time point (1, 2, ..., simulation_time). Follows a Gamma distribution
   probs <- sapply(1:simulation_time, function(t) (1 - min_chance_drug)^(t - 1))

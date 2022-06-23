@@ -19,6 +19,12 @@ maximal risk.
 In this case, the drug has no effect on the ADE
 what so ever.
 }
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+risk_function <- risk_no_effect() 
+risk_function() 
+# -> 0
+}
 \seealso{
 Other Risk models: 
 \code{\link{risk_immediate}()},

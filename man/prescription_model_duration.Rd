@@ -13,8 +13,20 @@ prescription_model_duration(duration)
 A drug prescription model function
 }
 \description{
-The drug is prescriped for maximally the 
-given duration (number of time steps)
+\code{prescription_model_duration} returns a 
+drug prescription model function. The returned
+function models the prescription process such 
+that the drug is prescribed for a maximum number
+of time points, i.e., the \code{duration}
+}
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+
+# returns an ADE model function
+prescription_model <- prescription_model_duration(3) 
+
+# apply the model
+prescription_model(drug_prescriptions)
 }
 \seealso{
 Other drug prescription effect models: 

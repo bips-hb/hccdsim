@@ -2,18 +2,30 @@
 # drugPrescriptionEffectModels.R 
 #
 # Contains all the possible drug prescription 
-# effect models. They model the way in which
-# the drug is prescriped over time, given 
-# the history of the drug's prescriptions.
+# effect models. A drug prescription model 
+# returns either a 1 when the drug is being 
+# prescribed the next time point and 0 otherwise. 
+# Whether the drug is prescribed again depends on 
+# when the drug prescription history. 
 ##############################################
 
 #' The Drug Prescription Model 'Markov Chain'
 #' 
-#' The drug prescriptions are modelled as a
-#' Markov Chain. 
+#' \code{prescription_model_markov_chain} returns a 
+#' drug prescription model function. The returned
+#' function models the drug prescription time series
+#' as a simple Markov chain model. 
 #' 
 #' @return A drug prescription model function
 #' @family drug prescription effect models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0)
+#' 
+#' # returns an ADE model function
+#' prescription_model <- prescription_model_markov_chain() 
+#' 
+#' # apply the model
+#' prescription_model(drug_prescriptions)
 #' @export 
 prescription_model_markov_chain <- function() { 
   function(drug_prescriptions, ...) { 
@@ -27,13 +39,24 @@ prescription_model_markov_chain <- function() {
 
 #' The Drug Prescription Model 'duration'
 #' 
-#' The drug is prescriped for maximally the 
-#' given duration (number of time steps)
+#' \code{prescription_model_duration} returns a 
+#' drug prescription model function. The returned
+#' function models the prescription process such 
+#' that the drug is prescribed for a maximum number
+#' of time points, i.e., the \code{duration}
 #' 
 #' @param duration The duration that the drug is prescribed
 #' 
 #' @return A drug prescription model function
 #' @family drug prescription effect models
+#' @examples 
+#' drug_prescriptions <- c(1, 0, 1, 0, 0)
+#' 
+#' # returns an ADE model function
+#' prescription_model <- prescription_model_duration(3) 
+#' 
+#' # apply the model
+#' prescription_model(drug_prescriptions)
 #' @export 
 prescription_model_duration <- function(duration) { 
   if (duration < 2) { 
@@ -57,12 +80,5 @@ prescription_model_duration <- function(duration) {
     } else {
       0
     }
-  }
-}
-
-prescription_model_auto_regressive <- function() { 
-  function(drug_prescriptions, p, coeff, ...) { 
-    # TODO 
-    NA
   }
 }

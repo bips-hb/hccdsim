@@ -16,12 +16,23 @@ A risk function
 A risk model reflects how the probability of 
 suffering the ADE changes the history of 
 drug prescriptions of the patient. 
-It returns 0 when the drug prescription history
-has no effect, and 1 when the patient is at 
+It returns \code{0} when the drug prescription history
+has no effect, and \code{1} when the patient is at 
 maximal risk.  
 In this case, once the patient is no longer exposed
 to the drug, the probability of the ADE peaks 
-and then dissipates exponentially.
+and then dissipates exponentially. 
+Let \eqn{\tau} be the number of time points since
+the patient was prescribed the drug last. The return
+value is the given by 
+\deqn{\exp(-\gamma \cdot (\tau - 1))} 
+where \eqn{\gamma} is \code{rate}.
+}
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+
+risk_function <- risk_withdrawal(rate = 1.2) 
+risk_function(drug_prescriptions) 
 }
 \seealso{
 Other Risk models: 

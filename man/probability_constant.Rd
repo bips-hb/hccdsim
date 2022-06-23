@@ -18,6 +18,11 @@ change with the type of patient. In this case,
 the type of patient has no effect on the 
 probability.
 }
+\examples{
+probability_model <- probability_constant(prob = 0.2)
+probability_model() 
+# always returns 0.2 
+}
 \seealso{
 Other Probability models: 
 \code{\link{probability_sex}()}
