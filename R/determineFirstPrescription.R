@@ -3,7 +3,9 @@
 #' \code{determine_first_perscription} returns a time point
 #' for the first prescription of the drug of interest 
 #' given the time frame of the patient (\code{simulation_time})
-#' and the chance for it be prescribed is \code{min_chance_drug}. 
+#' and the chance for it be prescribed is \code{min_chance_drug}.
+#' The patient, in this case, is always prescribed the drug at least
+#' once. The time point follows a \eqn{\Gamma} distribution. 
 #' 
 #' We assume here that the probability of the drug being prescribed
 #' does not depend on any previous prescriptions. 
@@ -22,10 +24,12 @@
 determine_first_prescription <- function(n_patients, simulation_time, min_chance_drug) { 
   
   # determining the probabilities that the drug is prescribed at each
-  # time point (1, 2, ..., simulation_time)
+  # time point (1, 2, ..., simulation_time). Follows a Gamma distribution
   probs <- sapply(1:simulation_time, function(t) (1 - min_chance_drug)^(t - 1))
   probs <- probs * min_chance_drug / sum(probs) # normalization
   
   # sample a random time point given the probabilities
-  sample(x = 1:simulation_time, n_patients, replace = T, prob = probs)
+  return(
+    sample(x = 1:simulation_time, n_patients, replace = TRUE, prob = probs)
+  )
 }

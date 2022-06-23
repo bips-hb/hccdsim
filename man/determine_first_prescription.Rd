@@ -22,6 +22,8 @@ A time point between \code{1} and \code{simulation_time}
 for the first prescription of the drug of interest 
 given the time frame of the patient (\code{simulation_time})
 and the chance for it be prescribed is \code{min_chance_drug}.
+The patient, in this case, is always prescribed the drug at least
+once. The time point follows a \eqn{\Gamma} distribution.
 }
 \details{
 We assume here that the probability of the drug being prescribed

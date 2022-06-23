@@ -22,6 +22,20 @@ stops any future drug prescription. This can, for example,
 reflect that the ADE is so severe, that the drug 
 is never prescribed again.
 }
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+ade_progression <- c(0, 0, 1, 1, 0) 
+
+# returns an ADE model function
+ade_model <- ade_model_full_stop(drug_ade_both = FALSE) 
+ade_model(ade_progression, drug_prescriptions)
+
+# -> 0
+
+ade_model <- ade_model_full_stop(drug_ade_both = TRUE) 
+ade_model(ade_progression, drug_prescriptions)
+# -> 0 
+}
 \seealso{
 Other ADE effect models: 
 \code{\link{ade_model_no_effect}()}

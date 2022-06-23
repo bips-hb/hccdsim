@@ -15,6 +15,16 @@ the appearance of an ADE on the drug prescriptions
 of patient. In this case, the appearance of an ADE 
 has no effect on the prescription of a drug.
 }
+\examples{
+drug_prescriptions <- c(1, 0, 1, 0, 0)
+ade_progression <- c(0, 0, 1, 1, 0) 
+
+# returns an ADE model function
+ade_model <- ade_model_no_effect() 
+
+ade_model(ade_progression, drug_prescriptions)
+# -> 1
+}
 \seealso{
 Other ADE effect models: 
 \code{\link{ade_model_full_stop}()}
