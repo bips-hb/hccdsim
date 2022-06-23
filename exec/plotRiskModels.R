@@ -25,9 +25,9 @@ sapply(peak, function(peak) {
   ggsave(sprintf("figures/risk_increase_decrease_%d.pdf", peak), p, width = width, height = height)
 })
 
-x <- c(0, 0, rep(1,10), rep(0, 200))
+x <- c(0, 0, rep(1,10), rep(0, 100))
 
-delay <- c(100, 200) 
+delay <- c(50, 80) 
 sapply(delay, function(delay) { 
   p <- plot_risk(x, risk_function = risk_long_time_after(0.1, delay))
   ggsave(sprintf("figures/risk_long_time_after_0.1_%d.pdf", delay), p, width = width, height = height)
