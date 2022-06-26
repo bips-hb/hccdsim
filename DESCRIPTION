@@ -1,7 +1,7 @@
 Package: hccdsim
 Type: Package
-Title: A simple simulator for health care claims data
-Version: 0.1.0
+Title: A simulator for health care claims data (hccd)
+Version: 1.0.0
 Author: Louis Dijkstra
 Maintainer: Louis Dijkstra <louisdijkstra@gmail.com>
 Description: A simple simulator for health care claims data.

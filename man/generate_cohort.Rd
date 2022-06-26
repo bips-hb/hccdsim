@@ -35,6 +35,8 @@ when the drug history and the ADR history have no effect}
 \item{max_chance_drug}{The probability of the ADR when
 the drug history and the ADR history have the highest
 possible effect}
+
+\item{verbose}{Show progress bar (Default: \code{FALSE})}
 }
 \value{
 A \code{cohort} object; a list with

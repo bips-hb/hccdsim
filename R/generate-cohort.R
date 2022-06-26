@@ -6,6 +6,7 @@
 #' 
 #' @param n_patients Number of patients 
 #' @inheritParams generate_patient
+#' @param verbose Show progress bar (Default: \code{FALSE})
 #' 
 #' @return A \code{cohort} object; a list with 
 #'       \item{\code{n_patients}}{The total number of patients}
