@@ -7,7 +7,7 @@
 generate_cohort(
   n_patients = 100,
   simulation_time = 30,
-  risk_model = risk_immediate(),
+  risk_model = risk_model_immediate(),
   drug_model = drug_model_markov_chain(),
   adr_model = adr_model_no_effect(),
   min_chance_drug = probability_constant(0.01),

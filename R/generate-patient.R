@@ -60,7 +60,7 @@
 #'                  patient_profile = patient_profile)                
 #' @export
 generate_patient <- function(simulation_time = 100, 
-                             risk_model = risk_immediate(), 
+                             risk_model = risk_model_immediate(), 
                              drug_model = drug_model_markov_chain(),
                              adr_model = adr_model_no_effect(), 
                              min_chance_drug = probability_constant(.01),
