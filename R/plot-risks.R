@@ -7,10 +7,10 @@
 #' risk level, i.e., \code{1} is maximal risk, \code{0}
 #' minimal risk.
 #' 
-#' @param drug_prescriptions Binary vector denoting the 
+#' @param drug_history Binary vector denoting the 
 #'                    drug prescription history. 
 #'              (Default: \code{0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0})
-#' @param risk_function One of the risk models 
+#' @param risk_model One of the risk models 
 #' @param title Title of the plot
 #' @param ylim The limits of the y-axis: \code{c(ymin, ymax)} 
 #'                (Default: \code{c(0,1)})
@@ -23,17 +23,17 @@
 #' 
 #' @return A \code{ggplot2} plot
 #' @examples 
-#' drug_prescriptions <- c(rep(0, 4), rep(1, 6), rep(0, 10))
-#' risk_function <- risk_immediate() 
+#' drug_history <- c(rep(0, 4), rep(1, 6), rep(0, 10))
+#' risk_model <- risk_model_immediate() 
 #' 
 #' # create the plot
-#' p <- plot_risk(drug_prescriptions, 
-#'                risk_function, 
+#' p <- plot_risk(drug_history, 
+#'                risk_model, 
 #'                title = "Direct effect model")
 #' p
 #' @export
-plot_risk <- function(drug_prescriptions = c(rep(0, 4), rep(1, 6), rep(0, 10)), 
-                      risk_function = risk_immediate(), 
+plot_risk <- function(drug_history = c(rep(0, 4), rep(1, 6), rep(0, 10)), 
+                      risk_model = risk_immediate(), 
                       title = "", 
                       ylim = c(0,1), 
                       shaded_area = TRUE, 
@@ -41,28 +41,28 @@ plot_risk <- function(drug_prescriptions = c(rep(0, 4), rep(1, 6), rep(0, 10)),
                       alpha = 0.3) { 
   
   # determine the risks given the drug prescription history 
-  # and the risk model given by risk_function
-  risks <- sapply(1:length(drug_prescriptions), function(i)
-    risk_function(drug_prescriptions[1:i]))
+  # and the risk model given by risk_model
+  risks <- sapply(1:length(drug_history), function(i)
+    risk_model(drug_history[1:i]))
   
   # create a dataset with the time points, the drug prescriptions 
   # and the risks
   data <- data.frame(
-    t = 1:length(drug_prescriptions), 
-    drug = drug_prescriptions,
+    t = 1:length(drug_history), 
+    drug = drug_history,
     risk = risks
   )
   
   # determine the time points when the drug prescriptions changes from
   # "not prescribed" to "prescribed" and the other way around
-  changes <- which(diff(drug_prescriptions) != 0)
+  changes <- which(diff(drug_history) != 0)
   # if drug is prescribed at the first time point, add it to changes
-  if (drug_prescriptions[1] == 1) { 
+  if (drug_history[1] == 1) { 
     changes <- c(0, changes) 
   }
   # if drug is prescribed at last time point, add it to changes
-  if (tail(drug_prescriptions, 1) == 1) { 
-    changes <- c(changes, length(drug_prescriptions)) 
+  if (tail(drug_history, 1) == 1) { 
+    changes <- c(changes, length(drug_history)) 
   }
   
   # create a data frame for the change points on the x-axis. Note
@@ -74,7 +74,7 @@ plot_risk <- function(drug_prescriptions = c(rep(0, 4), rep(1, 6), rep(0, 10)),
     geom_point(data = data, mapping = aes(x = t, y = risks)) + 
     xlab("time (t)") + 
     ylab("risk level") + 
-    scale_x_continuous(limits = c(0.45,length(drug_prescriptions)+.55), expand = c(0, 0)) +
+    scale_x_continuous(limits = c(0.45,length(drug_history)+.55), expand = c(0, 0)) +
     scale_y_continuous(limits = c(0,1), expand = c(.01, .01)) + 
     ggtitle(title) 
   
