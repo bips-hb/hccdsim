@@ -40,7 +40,7 @@ risk_model(drug_history)
 }
 \seealso{
 Other Risk models: 
-\code{\link{risk_immediate}()},
+\code{\link{risk_model_immediate}()},
 \code{\link{risk_model_increase_decrease}()},
 \code{\link{risk_model_no_effect}()},
 \code{\link{risk_model_withdrawal}()}

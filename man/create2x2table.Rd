@@ -23,12 +23,12 @@ depends on the \code{method} used}
 }
 \description{
 Creates a \eqn{2 \times 2} contingency table for a
-drug and ADE given a \code{cohort} object,
+drug and ADR given a \code{cohort} object,
 see \code{\link[hccdsim]{generate_cohort}} or
 \code{\link{check_cohort}}. \cr\cr
 A table is structured in the following form:
 \tabular{lcc}{
-\tab ADE \tab not ADE\cr
+\tab ADR \tab not ADR\cr
 drug \tab \code{a} \tab \code{c}\cr
 not drug \tab \code{b} \tab \code{d}
 }
@@ -41,10 +41,10 @@ two of them Zorych et al. (2013).
 Each time-point is counted separately. The counts are the
 \emph{number of time points} that
 \itemize{
-\item{\code{a} - the drug was prescribed and the ADE occurred}
-\item{\code{b} - the drug was not prescribed but the ADE occurred}
-\item{\code{c} - the drug was prescribed but the ADE did not occur}
-\item{\code{d} - the drug was not prescribed and the ADE did not occur}
+\item{\code{a} - the drug was prescribed and the ADR occurred}
+\item{\code{b} - the drug was not prescribed but the ADR occurred}
+\item{\code{c} - the drug was prescribed but the ADR did not occur}
+\item{\code{d} - the drug was not prescribed and the ADR did not occur}
 }
 Note that in this case the total count \code{n = a + b + c + d} is
 the same as the total number of time points observed, i.e., the total
@@ -57,10 +57,10 @@ number of patients times the number of time points observed:
 In this case, individual patients are counted. The counts are the \emph{number
 of patients} that
 \itemize{
-\item{\code{a} - were prescribed the drug and did experience the ADE }
-\item{\code{b} - were never prescribed the drug and did experience the ADE}
-\item{\code{c} - were prescribed the drug and never experienced the ADE}
-\item{\code{d} - were never prescribed the drug and never experienced the ADE}
+\item{\code{a} - were prescribed the drug and did experience the ADR }
+\item{\code{b} - were never prescribed the drug and did experience the ADR}
+\item{\code{c} - were prescribed the drug and never experienced the ADR}
+\item{\code{d} - were never prescribed the drug and never experienced the ADR}
 }
 In this case, the total count \code{n = a + b + c +d} is the same as
 the number of patients, \code{n_patients}.
@@ -74,10 +74,10 @@ For example, if the patient was prescribed the drug from time point 3 to
 6, then that period is called a drug-era.
 The counts are the \emph{number of drug- and non-drug eras} in which
 \itemize{
-\item{\code{a} - the drug was prescribed and the ADE occurred}
-\item{\code{b} - the drug was not prescribed but the ADE occurred}
-\item{\code{c} - the drug was prescribed but the ADE did not occur}
-\item{\code{d} - the drug was not prescribed and the ADE did not occur}
+\item{\code{a} - the drug was prescribed and the ADR occurred}
+\item{\code{b} - the drug was not prescribed but the ADR occurred}
+\item{\code{c} - the drug was prescribed but the ADR did not occur}
+\item{\code{d} - the drug was not prescribed and the ADR did not occur}
 }
 In this case, the total count \code{n} is the total number of drug- and
 non-drug eras.

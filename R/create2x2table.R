@@ -1,12 +1,12 @@
 #' Creating \eqn{2 \times 2} Tables
 #' 
 #' Creates a \eqn{2 \times 2} contingency table for a 
-#' drug and ADE given a \code{cohort} object, 
+#' drug and ADR given a \code{cohort} object, 
 #' see \code{\link[hccdsim]{generate_cohort}} or 
 #' \code{\link{check_cohort}}. \cr\cr
 #' A table is structured in the following form:  
 #' \tabular{lcc}{
-#'    \tab ADE \tab not ADE\cr
+#'    \tab ADR \tab not ADR\cr
 #'   drug \tab \code{a} \tab \code{c}\cr
 #'   not drug \tab \code{b} \tab \code{d}
 #' }
@@ -19,10 +19,10 @@
 #' Each time-point is counted separately. The counts are the 
 #' \emph{number of time points} that
 #' \itemize{ 
-#'    \item{\code{a} - the drug was prescribed and the ADE occurred}
-#'    \item{\code{b} - the drug was not prescribed but the ADE occurred}
-#'    \item{\code{c} - the drug was prescribed but the ADE did not occur}
-#'    \item{\code{d} - the drug was not prescribed and the ADE did not occur}
+#'    \item{\code{a} - the drug was prescribed and the ADR occurred}
+#'    \item{\code{b} - the drug was not prescribed but the ADR occurred}
+#'    \item{\code{c} - the drug was prescribed but the ADR did not occur}
+#'    \item{\code{d} - the drug was not prescribed and the ADR did not occur}
 #' }
 #' Note that in this case the total count \code{n = a + b + c + d} is 
 #' the same as the total number of time points observed, i.e., the total 
@@ -33,10 +33,10 @@
 #' In this case, individual patients are counted. The counts are the \emph{number 
 #' of patients} that 
 #' \itemize{
-#'    \item{\code{a} - were prescribed the drug and did experience the ADE }
-#'    \item{\code{b} - were never prescribed the drug and did experience the ADE}
-#'    \item{\code{c} - were prescribed the drug and never experienced the ADE}
-#'    \item{\code{d} - were never prescribed the drug and never experienced the ADE}
+#'    \item{\code{a} - were prescribed the drug and did experience the ADR }
+#'    \item{\code{b} - were never prescribed the drug and did experience the ADR}
+#'    \item{\code{c} - were prescribed the drug and never experienced the ADR}
+#'    \item{\code{d} - were never prescribed the drug and never experienced the ADR}
 #' }
 #' In this case, the total count \code{n = a + b + c +d} is the same as 
 #' the number of patients, \code{n_patients}.
@@ -48,10 +48,10 @@
 #' 6, then that period is called a drug-era. 
 #' The counts are the \emph{number of drug- and non-drug eras} in which 
 #' \itemize{ 
-#'    \item{\code{a} - the drug was prescribed and the ADE occurred}
-#'    \item{\code{b} - the drug was not prescribed but the ADE occurred}
-#'    \item{\code{c} - the drug was prescribed but the ADE did not occur}
-#'    \item{\code{d} - the drug was not prescribed and the ADE did not occur}
+#'    \item{\code{a} - the drug was prescribed and the ADR occurred}
+#'    \item{\code{b} - the drug was not prescribed but the ADR occurred}
+#'    \item{\code{c} - the drug was prescribed but the ADR did not occur}
+#'    \item{\code{d} - the drug was not prescribed and the ADR did not occur}
 #' }
 #' In this case, the total count \code{n} is the total number of drug- and 
 #' non-drug eras.
@@ -103,13 +103,13 @@ create2x2table <- function(cohort, method = c("time-point",
       # go over all time-points
       for (t in 1:cohort$simulation_time) { 
         # get whether the patient was exposed to the drug and 
-        # whether he/she suffered from the ADE
-        drug <- cohort$drug_prescriptions[i, t] == 1
-        ade  <- cohort$ade_progression[i, t] == 1
-        if (drug && ade)   { table$a <- table$a + 1 } 
-        if (!drug && ade)  { table$b <- table$b + 1 } 
-        if (drug && !ade)  { table$c <- table$c + 1 }
-        if (!drug && !ade) { table$d <- table$d + 1 }
+        # whether he/she suffered from the ADR
+        drug <- cohort$drug_history[i, t] == 1
+        ADR  <- cohort$adr_history[i, t] == 1
+        if (drug && ADR)   { table$a <- table$a + 1 } 
+        if (!drug && ADR)  { table$b <- table$b + 1 } 
+        if (drug && !ADR)  { table$c <- table$c + 1 }
+        if (!drug && !ADR) { table$d <- table$d + 1 }
       }
     }
   }
@@ -118,13 +118,13 @@ create2x2table <- function(cohort, method = c("time-point",
     # go over all patients
     for(i in 1:cohort$n_patients) { 
       # get whether the patient was exposed to the drug and 
-      # whether he/she suffered from the ADE
-      drug <- any(cohort$drug_prescriptions[i, ] == 1)
-      ade  <- any(cohort$ade_progression[i, ] == 1)
-      if (drug && ade)   { table$a <- table$a + 1 } 
-      if (!drug && ade)  { table$b <- table$b + 1 } 
-      if (drug && !ade)  { table$c <- table$c + 1 }
-      if (!drug && !ade) { table$d <- table$d + 1 }
+      # whether he/she suffered from the ADR
+      drug <- any(cohort$drug_history[i, ] == 1)
+      ADR  <- any(cohort$adr_history[i, ] == 1)
+      if (drug && ADR)   { table$a <- table$a + 1 } 
+      if (!drug && ADR)  { table$b <- table$b + 1 } 
+      if (drug && !ADR)  { table$c <- table$c + 1 }
+      if (!drug && !ADR) { table$d <- table$d + 1 }
     }
   }
   
@@ -134,55 +134,55 @@ create2x2table <- function(cohort, method = c("time-point",
       
       # first initialize some variables to keep track 
       # in which era we (drug or non-drug) and whether 
-      # the ADE occured during this era
-      in_drug_era <- cohort$drug_prescriptions[i, 1] == 1  # are we currently in a drug era? 
-      ade_happened <- cohort$ade_progression[i, 1] == 1    # did the ADE occur during this era? 
+      # the ADR occured during this era
+      in_drug_era <- cohort$drug_history[i, 1] == 1  # are we currently in a drug era? 
+      ADR_happened <- cohort$adr_history[i, 1] == 1    # did the ADR occur during this era? 
       
       # go overall time points from 2 to simulation_time - 1
       for (t in 2:(cohort$simulation_time - 1)) { 
         
         if (in_drug_era) { 
-          if (cohort$drug_prescriptions[i, t]) { # drug prescribed on time point t?
-            if (cohort$ade_progression[i, t]) {  # did the ADE occur?
-              ade_happened <- TRUE 
+          if (cohort$drug_history[i, t]) { # drug prescribed on time point t?
+            if (cohort$adr_history[i, t]) {  # did the ADR occur?
+              ADR_happened <- TRUE 
             }
           } else { 
             # switch from a drug-era to a non-drug era
             in_drug_era <- FALSE
-            if (ade_happened) { 
+            if (ADR_happened) { 
               table$a <- table$a + 1 
             } else { 
               table$c <- table$c + 1 
             }
-            ade_happened <- cohort$ade_progression[i, t] == 1
+            ADR_happened <- cohort$adr_history[i, t] == 1
           }
         } 
         
         if (!in_drug_era) { 
-          if (cohort$drug_prescriptions[i, t] == 0) { # drug not prescribed
-            if (cohort$ade_progression[i, t] == 1) {  # ADE occurred 
-              ade_happened <- TRUE 
+          if (cohort$drug_history[i, t] == 0) { # drug not prescribed
+            if (cohort$adr_history[i, t] == 1) {  # ADR occurred 
+              ADR_happened <- TRUE 
             }
           } else { 
             # switch from a non-drug-era to a drug era
             in_drug_era <- TRUE
-            if (ade_happened) { 
+            if (ADR_happened) { 
               table$b <- table$b + 1 
             } else { 
               table$d <- table$d + 1 
             }
-            ade_happened <- cohort$ade_progression[i, t] == 1
+            ADR_happened <- cohort$adr_history[i, t] == 1
           }
         }
       }
       if (in_drug_era) { 
-        if (ade_happened) { 
+        if (ADR_happened) { 
           table$a <- table$a + 1 
         } else { 
           table$c <- table$c + 1 
         } 
       } else { 
-        if (ade_happened) { 
+        if (ADR_happened) { 
           table$b <- table$b + 1 
         } else { 
           table$d <- table$d + 1 
@@ -200,7 +200,7 @@ create2x2table <- function(cohort, method = c("time-point",
 print.cont_table <- function(table) { 
   cat(sprintf("2 x 2 Contingency Table\n"))
   cat(sprintf("\tusing method '%s'\n\n", table$method))
-  cat("         |\tADE\t|     not ADE\t| total\n")
+  cat("         |\tADR\t|     not ADR\t| total\n")
   cat("------------------------------------------------\n")
   cat(sprintf("    drug |\t%d\t|\t%d\t| %d\n", table$a, table$c, table$a + table$c)) 
   cat(sprintf("not drug |\t%d\t|\t%d\t| %d\n", table$b, table$d, table$b + table$d)) 

@@ -51,7 +51,7 @@ risk_model_no_effect <- function() {
 #' risk_model <- risk_model_immediate() 
 #' risk_model(drug_history) 
 #' @export
-risk_immediate <- function() {
+risk_model_immediate <- function() {
   function(drug_history, ...) { 
     if (drug_history[length(drug_history)]) { 
       1  # highest risk
