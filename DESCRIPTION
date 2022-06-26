@@ -4,7 +4,7 @@ Title: A simulator for health care claims data (hccd)
 Version: 1.0.0
 Author: Louis Dijkstra
 Maintainer: Louis Dijkstra <louisdijkstra@gmail.com>
-Description: A simple simulator for health care claims data.
+Description: A simulator for health care claims data
 Depends:
 	  R (>= 3.4.3),
 	  ggplot2,

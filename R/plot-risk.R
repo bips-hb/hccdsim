@@ -33,7 +33,7 @@
 #' p
 #' @export
 plot_risk <- function(drug_history = c(rep(0, 4), rep(1, 6), rep(0, 10)), 
-                      risk_model = risk_immediate(), 
+                      risk_model = risk_model_immediate(), 
                       title = "", 
                       ylim = c(0,1), 
                       shaded_area = TRUE, 
