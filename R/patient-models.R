@@ -1,12 +1,12 @@
 ##############################################
-# patientModels.R 
+# patient-models.R 
 #
 # Contains all the patient models. 
 # They model how the covariates of the patients,
 # e.g., sex and age, are generated. These 
 # patient descriptions can then be used 
-# in any of the other models: drug prescription
-# models, ADE effect models etc.  
+# in any of the other models: drug 
+# models, ADR effect models etc.  
 ##############################################
 
 #' Patient Model 'Uniformative'
@@ -15,7 +15,7 @@
 #' of the patient, e.g., e.g., sex and age. These 
 #' patient descriptions can then be used 
 #' in any of the other models: drug prescription
-#' models, ADE effect models etc.  
+#' models, ADR effect models etc.  
 #' In this case, the patient has no covariates. 
 #' All patients are the same.
 #' 
@@ -38,7 +38,7 @@ patient_model_uninformative <- function(...) {
 #' of the patient, e.g., e.g., sex and age. These 
 #' patient descriptions can then be used 
 #' in any of the other models: drug prescription
-#' models, ADE effect models etc.  
+#' models, ADR effect models etc.  
 #' In this case, the patient has only the covariate
 #' `sex'.  
 #' 

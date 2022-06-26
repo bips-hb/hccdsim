@@ -1,10 +1,10 @@
 ##############################################
-# probabilityModels.R 
+# probability-models.R 
 #
 # Contains all the probability models. 
 # They model how probabilities of any kind change
 # with the type of patient. E.g., the probability
-# of suffering the ADE can differ for males 
+# of suffering the ADR can differ for males 
 # and females. 
 ##############################################
 
@@ -69,4 +69,3 @@ probability_sex <- function(prob_male, prob_female, ...) {
     }
   }
 }
-
