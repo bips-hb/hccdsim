@@ -14,15 +14,15 @@ update_ade_progression(
 )
 }
 \arguments{
-\item{drug_prescriptions}{Binary vector denoting the 
+\item{drug_prescriptions}{Binary vector denoting the
 drug prescriptions history}
 
 \item{risk_function}{A risk model, e.g., \code{\link{risk_immediate}}}
 
-\item{min_chance}{A probability model function. The probability of the ADE when 
+\item{min_chance}{A probability model function. The probability of the ADE when
 the drug history has no effect}
 
-\item{max_chance}{A probability model function. The probability of the ADE when 
+\item{max_chance}{A probability model function. The probability of the ADE when
 the drug history has the highest possible effect}
 }
 \value{
@@ -30,9 +30,9 @@ the drug history has the highest possible effect}
 }
 \description{
 Returns whether or not the ADE occurs at the next
-time point (\code{1}) or not (\code{0}). The probability of the 
+time point (\code{1}) or not (\code{0}). The probability of the
 ADE occuring depends on the patient drug prescription
-history (\code{drug_prescriptions}) and the risk 
+history (\code{drug_prescriptions}) and the risk
 function (\code{risk_function}).
 }
 \examples{

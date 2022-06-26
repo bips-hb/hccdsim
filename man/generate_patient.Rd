@@ -28,29 +28,29 @@ generate_patient(
 \item{min_chance_drug}{The probability of the drug being prescribed
 when the drug history and the ADE history have no effect}
 
-\item{max_chance_drug}{The probability of the ADE when 
-the drug history and the ADE history have the highest 
+\item{max_chance_drug}{The probability of the ADE when
+the drug history and the ADE history have the highest
 possible effect}
 
-\item{min_chance}{The probability of the ADE when 
+\item{min_chance}{The probability of the ADE when
 the drug history has no effect}
 
-\item{max_chance}{The probability of the ADE when 
+\item{max_chance}{The probability of the ADE when
 the drug history has the highest possible effect}
 
 \item{patient}{A list with the covariates of the patient (Default: \code{NULL})}
 }
 \value{
-A \code{patient} object; a list with 
-      \item{\code{drug_prescriptions}}{binary vector of the 
-               drug prescription history}
-      \item{\code{ade_progression}}{binary vector of the 
-               ade progression}
-      \item{\code{simulation_time}}{The total number of time steps}
-      \item{\code{patient_profile}}{A list with patient characteristics}
+A \code{patient} object; a list with
+\item{\code{drug_prescriptions}}{binary vector of the
+drug prescription history}
+\item{\code{ade_progression}}{binary vector of the
+ade progression}
+\item{\code{simulation_time}}{The total number of time steps}
+\item{\code{patient_profile}}{A list with patient characteristics}
 }
 \description{
-Generates the drug prescription and 
+Generates the drug prescription and
 ADE history of an individual patient.
 }
 \examples{

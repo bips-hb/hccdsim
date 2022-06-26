@@ -11,11 +11,11 @@ A patient model function
 }
 \description{
 A patient model helps to generate the covariates
-of the patient, e.g., e.g., sex and age. These 
-patient descriptions can then be used 
+of the patient, e.g., e.g., sex and age. These
+patient descriptions can then be used
 in any of the other models: drug prescription
-models, ADE effect models etc.  
-In this case, the patient has no covariates. 
+models, ADE effect models etc.
+In this case, the patient has no covariates.
 All patients are the same.
 }
 \examples{

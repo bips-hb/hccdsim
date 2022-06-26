@@ -13,14 +13,14 @@ risk_increase_decrease(peak)
 A risk function
 }
 \description{
-A risk model reflects how the probability of 
-suffering the ADE changes the history of 
-drug prescriptions of the patient. 
+A risk model reflects how the probability of
+suffering the ADE changes the history of
+drug prescriptions of the patient.
 It returns \code{0} when the drug prescription history
-has no effect, and \code{1} when the patient is at 
-maximal risk.  
-In this case, the risk first increases linearly and 
-reaches its peak after \code{peak} time points. Then 
+has no effect, and \code{1} when the patient is at
+maximal risk.
+In this case, the risk first increases linearly and
+reaches its peak after \code{peak} time points. Then
 it goes down at the same rate before it hits zero again.
 }
 \examples{

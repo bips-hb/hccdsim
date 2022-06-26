@@ -13,9 +13,9 @@ probability_constant(prob, ...)
 A probability model function
 }
 \description{
-Probability models define how probabilities 
+Probability models define how probabilities
 change with the type of patient. In this case,
-the type of patient has no effect on the 
+the type of patient has no effect on the
 probability.
 }
 \examples{

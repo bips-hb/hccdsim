@@ -14,7 +14,7 @@ when the patient is either male or female}
 A probability model function
 }
 \description{
-Probability models define how probabilities 
+Probability models define how probabilities
 change with the type of patient. In this case,
 the sex of the patient changes the probability.
 }

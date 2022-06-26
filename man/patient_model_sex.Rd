@@ -7,7 +7,7 @@
 patient_model_sex(prob_male = 0.5)
 }
 \arguments{
-\item{prob_male}{The probability that the 
+\item{prob_male}{The probability that the
 patient is 'male' (Default: \code{0.5})}
 }
 \value{
@@ -15,10 +15,10 @@ A patient model function
 }
 \description{
 A patient model helps to generate the covariates
-of the patient, e.g., e.g., sex and age. These 
-patient descriptions can then be used 
+of the patient, e.g., e.g., sex and age. These
+patient descriptions can then be used
 in any of the other models: drug prescription
-models, ADE effect models etc.  
+models, ADE effect models etc.
 In this case, the patient has only the covariate
 `sex'.
 }

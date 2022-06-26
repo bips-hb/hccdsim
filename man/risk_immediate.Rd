@@ -10,13 +10,13 @@ risk_immediate()
 A risk function
 }
 \description{
-A risk model reflects how the probability of 
-suffering the ADE changes the history of 
-drug prescriptions of the patient. 
+A risk model reflects how the probability of
+suffering the ADE changes the history of
+drug prescriptions of the patient.
 It returns 0 when the drug prescription history
-has no effect, and 1 when the patient is at 
-maximal risk.  
-In this case, the probability of the ADE 
+has no effect, and 1 when the patient is at
+maximal risk.
+In this case, the probability of the ADE
 is maximal only when the patient is currently
 exposed.
 }

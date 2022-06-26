@@ -8,29 +8,41 @@ plot_risk(
   drug_prescriptions = c(rep(0, 4), rep(1, 6), rep(0, 10)),
   risk_function = risk_immediate(),
   title = "",
-  ylim = c(0, 1)
+  ylim = c(0, 1),
+  shaded_area = TRUE,
+  fill = "black",
+  alpha = 0.3
 )
 }
 \arguments{
-\item{drug_prescriptions}{Binary vector denoting the 
-      drug prescription history. 
+\item{drug_prescriptions}{Binary vector denoting the
+drug prescription history.
 (Default: \code{0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0})}
 
 \item{risk_function}{One of the risk models}
 
 \item{title}{Title of the plot}
 
-\item{ylim}{The limits of the y-axis: \code{c(ymin, ymax)} 
+\item{ylim}{The limits of the y-axis: \code{c(ymin, ymax)}
 (Default: \code{c(0,1)})}
+
+\item{shaded_area}{If \code{TRUE}, periods in which drugs were
+prescribed are shaded in a gray tone. Otherwise,
+the drug prescription periods are denoted by
+vertical dashed red lines (Default: \code{TRUE})}
+
+\item{fill}{Color used for the shaded area (Default: \code{black})}
+
+\item{alpha}{Alpha value for shaded area (Default: \code{.3})}
 }
 \value{
 A \code{ggplot2} plot
 }
 \description{
-Plots the risk function's behavior for 
-a given drug prescription history. 
-The \eqn{x}-axis denote the 
-drug prescriptions and the \eqn{y}-axis represent the 
+Plots the risk function's behavior for
+a given drug prescription history.
+The \eqn{x}-axis denote the
+drug prescriptions and the \eqn{y}-axis represent the
 risk level, i.e., \code{1} is maximal risk, \code{0}
 minimal risk.
 }

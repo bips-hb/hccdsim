@@ -3,7 +3,7 @@
 \docType{package}
 \name{hccdsim}
 \alias{hccdsim}
-\title{\code{hccdsim}: A package for simulation longitudinal health care 
+\title{\code{hccdsim}: A package for simulation longitudinal health care
 claims data.}
 \author{
 Louis Dijkstra

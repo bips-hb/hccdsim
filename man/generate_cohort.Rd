@@ -32,23 +32,23 @@ generate_cohort(
 \item{min_chance_drug}{The probability of the drug being prescribed
 when the drug history and the ADE history have no effect}
 
-\item{max_chance_drug}{The probability of the ADE when 
-the drug history and the ADE history have the highest 
+\item{max_chance_drug}{The probability of the ADE when
+the drug history and the ADE history have the highest
 possible effect}
 }
 \value{
-A \code{cohort} object; a list with 
-      \item{\code{n_patients}}{The total number of patients}
-      \item{\code{simulation_time}}{The total number of time steps}
-      \item{\code{drug_prescriptions}}{A binary matrix with \code{n_patients}
-            rows and \code{simulation_time} columns}
-      \item{\code{ade_progression}}{A binary matrix with \code{n_patients}
-            rows and \code{simulation_time} columns}
-      \item{\code{patient_profile}}{A list with the patient profiles for each patient}
+A \code{cohort} object; a list with
+\item{\code{n_patients}}{The total number of patients}
+\item{\code{simulation_time}}{The total number of time steps}
+\item{\code{drug_prescriptions}}{A binary matrix with \code{n_patients}
+rows and \code{simulation_time} columns}
+\item{\code{ade_progression}}{A binary matrix with \code{n_patients}
+rows and \code{simulation_time} columns}
+\item{\code{patient_profile}}{A list with the patient profiles for each patient}
 }
 \description{
-Generates a cohort of patients, each with a 
-drug prescription and ADE progression history. 
+Generates a cohort of patients, each with a
+drug prescription and ADE progression history.
 See for more information and details \code{\link{generate_patient}}.
 }
 \seealso{

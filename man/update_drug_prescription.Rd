@@ -16,13 +16,13 @@ update_drug_prescription(
 )
 }
 \arguments{
-\item{drug_prescriptions}{Binary vector denoting the 
+\item{drug_prescriptions}{Binary vector denoting the
 drug prescriptions history}
 
 \item{ade_progression}{Binary vector denoting the history
 of the ADE}
 
-\item{prescription_model}{A prescription model function, 
+\item{prescription_model}{A prescription model function,
 e.g., \code{\link{prescription_model_markov_chain}}}
 
 \item{ade_model}{An ADE effect model, e.g., \code{\link{ade_model_full_stop}}}
@@ -30,17 +30,17 @@ e.g., \code{\link{prescription_model_markov_chain}}}
 \item{min_chance}{The probability of the drug being prescribed
 when the drug history and the ADE history have no effect}
 
-\item{max_chance}{The probability of the ADE when 
-the drug history and the ADE history have the highest 
+\item{max_chance}{The probability of the ADE when
+the drug history and the ADE history have the highest
 possible effect}
 }
 \value{
 \code{1} or \code{0}
 }
 \description{
-Returns whether or not the drug is prescribed 
-at the next time point (\code{1}) or not (\code{0}). 
-The probability depends on the drug prescriptions, 
+Returns whether or not the drug is prescribed
+at the next time point (\code{1}) or not (\code{0}).
+The probability depends on the drug prescriptions,
 the ADE history and the prescription_model.
 }
 \examples{

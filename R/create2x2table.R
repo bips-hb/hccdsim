@@ -73,7 +73,16 @@
 #' pharmacovigilance in longitudinal observational databases. 
 #' Statistical Methods in Medical Research, 22(1), 39–56. 
 #' https://doi.org/10.1177/0962280211403602  
-#' @seealso \code{{generate_cohort}
+#' @seealso \code{\link{generate_cohort}}
+#' @examples 
+#' set.seed(1)
+#' cohort <- generate_cohort(n_patients = 200) 
+#' 
+#' # create the 2x2 contingency table per time-point, 
+#' # drug-era and patient: 
+#' create2x2table(cohort, method = "time-point")
+#' create2x2table(cohort, method = "drug-era")
+#' create2x2table(cohort, method = "patient")
 #' @export
 create2x2table <- function(cohort, method = c("time-point", 
                                               "drug-era", 

@@ -7,8 +7,8 @@
 #' The patient, in this case, is always prescribed the drug at least
 #' once. The time point follows a \eqn{\Gamma} distribution. 
 #' 
-#' We assume here that the probability of the drug being prescribed
-#' does not depend on any previous prescriptions. 
+#' \emph{Note:} we assume here that the probability of 
+#' the drug being prescribed does not depend on any previous prescriptions. 
 #' 
 #' @param n_patients Number of patients (Default: 1)
 #' @param simulation_time The total number of time points for this patient
