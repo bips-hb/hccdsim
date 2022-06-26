@@ -20,11 +20,11 @@
 #' @return A probability model function
 #' @family Probability models
 #' @examples 
-#' probability_model <- probability_constant(prob = 0.2)
+#' probability_model <- probability_model_constant(prob = 0.2)
 #' probability_model() 
 #' # always returns 0.2 
 #' @export
-probability_constant <- function(prob, ...) { 
+probability_model_constant <- function(prob, ...) { 
   function(...) { 
     prob
   }
@@ -51,10 +51,10 @@ probability_constant <- function(prob, ...) {
 #' (patient <- patient_model())
 #' 
 #' # create a probability model
-#' probability_model <- probability_sex(prob_male = .8, prob_female = .3)
+#' probability_model <- probability_model_sex(prob_male = .8, prob_female = .3)
 #' probability_model(patient) 
 #' @export
-probability_sex <- function(prob_male, prob_female, ...) { 
+probability_model_sex <- function(prob_male, prob_female, ...) { 
   function(patient, ...) { 
     
     # check whether the sex of the patient is specified

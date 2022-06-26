@@ -33,7 +33,7 @@
 #' (patient_profile <- patient_model())
 #' 
 #' # choose a risk function
-#' risk_model <- risk_immediate()
+#' risk_model <- risk_model_immediate()
 #' 
 #' # how the drug is prescribed over time
 #' drug_model <- drug_model_markov_chain() 
@@ -42,12 +42,12 @@
 #' adr_model = adr_model_no_effect()
 #' 
 #' # minimum and maximal probabilities for the drug being prescribed
-#' min_chance_drug <- probability_sex(prob_male = .1, prob_female = .2)
-#' max_chance_drug <- probability_sex(prob_male = .5, prob_female = .53)
+#' min_chance_drug <- probability_model_sex(prob_male = .1, prob_female = .2)
+#' max_chance_drug <- probability_model_sex(prob_male = .5, prob_female = .53)
 #' 
 #' # minimum and maximal probabilities for the ADR occurring 
-#' min_chance_adr <- probability_sex(prob_male = .01, prob_female = .05)
-#' max_chance_adr <- probability_sex(prob_male = .2, prob_female = .3)
+#' min_chance_adr <- probability_model_sex(prob_male = .01, prob_female = .05)
+#' max_chance_adr <- probability_model_sex(prob_male = .2, prob_female = .3)
 #' 
 #' generate_patient(simulation_time = 100, 
 #'                  risk_model, 
@@ -63,10 +63,10 @@ generate_patient <- function(simulation_time = 100,
                              risk_model = risk_model_immediate(), 
                              drug_model = drug_model_markov_chain(),
                              adr_model = adr_model_no_effect(), 
-                             min_chance_drug = probability_constant(.01),
-                             max_chance_drug = probability_constant(.5),
-                             min_chance_adr = probability_constant(.001), 
-                             max_chance_adr = probability_constant(.2), 
+                             min_chance_drug = probability_model_constant(.01),
+                             max_chance_drug = probability_model_constant(.5),
+                             min_chance_adr = probability_model_constant(.001), 
+                             max_chance_adr = probability_model_constant(.2), 
                              patient_profile = NULL) { 
   
   # determine first time the drug is prescribed 

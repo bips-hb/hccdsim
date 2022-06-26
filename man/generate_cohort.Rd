@@ -10,10 +10,10 @@ generate_cohort(
   risk_model = risk_model_immediate(),
   drug_model = drug_model_markov_chain(),
   adr_model = adr_model_no_effect(),
-  min_chance_drug = probability_constant(0.01),
-  max_chance_drug = probability_constant(0.5),
-  min_chance_adr = probability_constant(0.001),
-  max_chance_adr = probability_constant(0.2),
+  min_chance_drug = probability_model_constant(0.01),
+  max_chance_drug = probability_model_constant(0.5),
+  min_chance_adr = probability_model_constant(0.001),
+  max_chance_adr = probability_model_constant(0.2),
   patient_model = patient_model_uninformative(),
   verbose = FALSE
 )
@@ -50,6 +50,40 @@ rows and \code{simulation_time} columns}
 Generates a cohort of patients, each with a
 drug prescription and ADR history.
 See for more information and details \code{\link{generate_patient}}.
+}
+\examples{
+# choose a patient model (in this case based on the patients sex)
+patient_model <- patient_model_sex(prob_male = 0.5)
+(patient_profile <- patient_model())
+
+# choose a risk model (effect of the drug is immediate)
+risk_model <- risk_model_immediate()
+
+# how the drug is prescribed over time
+drug_model <- drug_model_markov_chain() 
+
+# how the occurence of an ADR affect the prescription of the drug
+adr_model = adr_model_no_effect()
+
+# minimum and maximal probabilities for the drug being prescribed
+min_chance_drug <- probability_model_sex(prob_male = .1, prob_female = .2)
+max_chance_drug <- probability_model_sex(prob_male = .5, prob_female = .53)
+
+# minimum and maximal probabilities for the ADR occurring 
+min_chance_adr <- probability_model_sex(prob_male = .01, prob_female = .05)
+max_chance_adr <- probability_model_sex(prob_male = .2, prob_female = .3)
+
+generate_cohort(n_patients = 10, 
+               simulation_time = 20, 
+               risk_model      = risk_model, 
+               drug_model      = drug_model,
+               adr_model       = adr_model, 
+               min_chance_drug = min_chance_drug,
+               max_chance_drug = max_chance_drug,
+               min_chance_adr  = min_chance_adr, 
+               max_chance_adr  = max_chance_adr, 
+               patient_model   = patient_model,
+               verbose = TRUE) 
 }
 \seealso{
 \code{\link{generate_patient}}
