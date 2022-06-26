@@ -7,13 +7,13 @@
 generate_cohort(
   n_patients = 100,
   simulation_time = 30,
-  risk_function = risk_immediate(),
-  prescription_model = prescription_model_markov_chain(),
-  ade_model = ade_model_no_effect(),
+  risk_model = risk_immediate(),
+  drug_model = drug_model_markov_chain(),
+  adr_model = adr_model_no_effect(),
   min_chance_drug = probability_constant(0.01),
   max_chance_drug = probability_constant(0.5),
-  min_chance_ade = probability_constant(0.001),
-  max_chance_ade = probability_constant(0.2),
+  min_chance_adr = probability_constant(0.001),
+  max_chance_adr = probability_constant(0.2),
   patient_model = patient_model_uninformative(),
   verbose = FALSE
 )
@@ -22,12 +22,6 @@ generate_cohort(
 \item{n_patients}{Number of patients}
 
 \item{simulation_time}{The total number of time steps}
-
-\item{risk_function}{One of the risk models}
-
-\item{prescription_model}{One of the prescription models}
-
-\item{ade_model}{One of the ADE effect models}
 
 \item{min_chance_drug}{The probability of the drug being prescribed
 when the drug history and the ADE history have no effect}
@@ -40,15 +34,15 @@ possible effect}
 A \code{cohort} object; a list with
 \item{\code{n_patients}}{The total number of patients}
 \item{\code{simulation_time}}{The total number of time steps}
-\item{\code{drug_prescriptions}}{A binary matrix with \code{n_patients}
+\item{\code{drug_history}}{A binary matrix with \code{n_patients}
 rows and \code{simulation_time} columns}
-\item{\code{ade_progression}}{A binary matrix with \code{n_patients}
+\item{\code{adr_history}}{A binary matrix with \code{n_patients}
 rows and \code{simulation_time} columns}
 \item{\code{patient_profile}}{A list with the patient profiles for each patient}
 }
 \description{
 Generates a cohort of patients, each with a
-drug prescription and ADE progression history.
+drug prescription and ADR history.
 See for more information and details \code{\link{generate_patient}}.
 }
 \seealso{

@@ -1,7 +1,7 @@
 #' Generate a Cohort 
 #' 
 #' Generates a cohort of patients, each with a 
-#' drug prescription and ADE progression history. 
+#' drug prescription and ADR history. 
 #' See for more information and details \code{\link{generate_patient}}.
 #' 
 #' @param n_patients Number of patients 
@@ -10,9 +10,9 @@
 #' @return A \code{cohort} object; a list with 
 #'       \item{\code{n_patients}}{The total number of patients}
 #'       \item{\code{simulation_time}}{The total number of time steps}
-#'       \item{\code{drug_prescriptions}}{A binary matrix with \code{n_patients}
+#'       \item{\code{drug_history}}{A binary matrix with \code{n_patients}
 #'             rows and \code{simulation_time} columns}
-#'       \item{\code{ade_progression}}{A binary matrix with \code{n_patients}
+#'       \item{\code{adr_history}}{A binary matrix with \code{n_patients}
 #'             rows and \code{simulation_time} columns}
 #'       \item{\code{patient_profile}}{A list with the patient profiles for each patient}
 #'
@@ -20,19 +20,19 @@
 #' @export
 generate_cohort <- function(n_patients = 100, 
                             simulation_time = 30, 
-                            risk_function = risk_immediate(), 
-                            prescription_model = prescription_model_markov_chain(),
-                            ade_model = ade_model_no_effect(), 
+                            risk_model      = risk_immediate(), 
+                            drug_model      = drug_model_markov_chain(),
+                            adr_model       = adr_model_no_effect(), 
                             min_chance_drug = probability_constant(.01),
                             max_chance_drug = probability_constant(.5),
-                            min_chance_ade = probability_constant(.001), 
-                            max_chance_ade = probability_constant(.2), 
-                            patient_model = patient_model_uninformative(),
+                            min_chance_adr  = probability_constant(.001), 
+                            max_chance_adr  = probability_constant(.2), 
+                            patient_model   = patient_model_uninformative(),
                             verbose = FALSE) { 
   
   # initial data 
-  drug_prescriptions <- matrix(rep(NA, n_patients * simulation_time), nrow = n_patients)
-  ade_progression <- drug_prescriptions
+  drug_history <- matrix(rep(NA, n_patients * simulation_time), nrow = n_patients)
+  adr_history <- drug_history
   patient_profiles <- vector(mode = "list", length = n_patients) # list
   
   if (verbose) { 
@@ -43,16 +43,16 @@ generate_cohort <- function(n_patients = 100,
   lapply(1:n_patients, function(i) { 
     patient_profile <- patient_model() # generate the profile of the patient, e.g., sex, age
     patient <- generate_patient(simulation_time, 
-                                risk_function, 
-                                prescription_model, 
-                                ade_model, 
+                                risk_model, 
+                                drug_model, 
+                                adr_model, 
                                 min_chance_drug, 
                                 max_chance_drug,
-                                min_chance_ade, 
-                                max_chance_ade, 
+                                min_chance_adr, 
+                                max_chance_adr, 
                                 patient_profile = patient_profile) 
-    drug_prescriptions[i, ] <<- patient$drug_prescriptions 
-    ade_progression[i, ] <<- patient$ade_progression
+    drug_history[i, ] <<- patient$drug_history 
+    adr_history[i, ] <<- patient$adr_history
     patient_profiles[[i]] <<- patient_profile
     
     if (verbose & i %% 100 == 0) { 
@@ -67,8 +67,8 @@ generate_cohort <- function(n_patients = 100,
   res <- list(
     n_patients = n_patients, 
     simulation_time = simulation_time,  
-    drug_prescriptions = drug_prescriptions,
-    ade_progression = ade_progression,
+    drug_history = drug_history,
+    adr_history = adr_history,
     patient_profiles = patient_profiles
   )
   class(res) <- "cohort"
@@ -85,15 +85,15 @@ print.cohort <- function(cohort) {
   for (i in 1:cohort$n_patients) { 
     cat(sprintf("patient %d   drugs: ", i)) 
     for(t in 1:cohort$simulation_time) {
-      if (cohort$drug_prescriptions[i, t] == 1) {
+      if (cohort$drug_history[i, t] == 1) {
         cat(green(1))
       } else {
         cat(blue("."))
       }
     }
-    cat(sprintf("\npatient %d   ADE:   ", i))
+    cat(sprintf("\npatient %d   ADR:   ", i))
     for(t in 1:cohort$simulation_time) { 
-        if (cohort$ade_progression[i, t] == 1) {
+        if (cohort$adr_history[i, t] == 1) {
           cat(red(1))
         } else {
           cat(blue("."))
