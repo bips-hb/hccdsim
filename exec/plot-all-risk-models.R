@@ -45,10 +45,8 @@ sapply(peak, function(peak) {
 })
 
 # Long time after model ---------------
-
 delay <- c(50, 80) 
 sapply(delay, function(delay) { 
   p <- plot_risk(long_drug_history, risk_model = risk_model_long_time_after(0.1, delay))
   ggsave(sprintf("figures/risk_long_time_after_0.1_%d.pdf", delay), p, width = width, height = height)
 })
-
